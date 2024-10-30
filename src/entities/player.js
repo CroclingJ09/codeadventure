@@ -1,4 +1,4 @@
-import {state} from "./src/state/globalStateManager"
+import {state} from "../state/globalStateManager";
 
 export function makePlayer(k) {
     return k.make([
