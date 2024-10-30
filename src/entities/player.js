@@ -1,8 +1,8 @@
 import {state} from "./src/state/globalStateManager"
 
-export function makePlayer(k, initialPos) {
+export function makePlayer(k) {
     return k.make([
-        k.pos(initialPos),
+        k.pos(),
         k.sprite("player"),
         k.area({
             shape: new k.Rect(k.vec2(0,18), 12, 12)
@@ -19,6 +19,10 @@ export function makePlayer(k, initialPos) {
         {
             speed: 150,
             isAttacking: false,
+            setPosition(x, y) {
+              this.pos.x = x,
+              this.pos.y = y
+            },
             setControls() {
                 this.controlHandler = []
 
@@ -79,9 +83,9 @@ export function makePlayer(k, initialPos) {
                     k.onKeyRelease(() => {
                         if (
                             this.curAnim() !== "idle" &&
-                            this.curAnim() !== "jump" &&
-                            this.curAnim() !== "walk"
+                            this.curAnim() !== "jump"
                         )
+                            this.play("idle")
                     })
                 )
             }

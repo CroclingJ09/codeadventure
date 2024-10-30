@@ -1,4 +1,5 @@
 import {setMapColliders} from "./roomUtils.js";
+import {makePlayer} from "../entities/player.js";
 
 export function testRoom(k, roomData) {
     k.add([
@@ -19,10 +20,15 @@ export function testRoom(k, roomData) {
 
     const map = k.add([k.pos(0,0), k.sprite("testRoom")])
     const colliders = []
+    const positions = []
     for (const layer of roomLayers){
+        if (layer.name === "Positions"){
+            positions.push(...layer.objects)
+        }
+
         if (layer.name === "Collisions"){
             colliders.push(...layer.objects)
-            break
+            continue
         }
     }
 
@@ -31,4 +37,6 @@ export function testRoom(k, roomData) {
     console.log(map)
 
     setMapColliders(k, map, colliders)
+
+    const player = map.add(makePlayer(k))
 }

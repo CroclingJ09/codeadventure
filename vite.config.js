@@ -5,5 +5,9 @@ export default defineConfig({
     build: {
         minify: "terser",
     },
-
+    server: {
+        fs: {
+            cachedChecks: false
+        }
+    }
 })
