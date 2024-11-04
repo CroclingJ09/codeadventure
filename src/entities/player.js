@@ -5,19 +5,19 @@ export function makePlayer(k) {
         k.pos(),
         k.sprite("player"),
         k.area({
-            shape: new k.Rect(k.vec2(0,18), 12, 12)
+            shape: new k.Rect(k.vec2(0,0), 24, 32)
         }),
         k.anchor("bot"),
         k.body({
-            mass: 100,
-            jumpForce: 320,
+            mass: 70,
+            jumpForce: 400,
         }),
         k.doubleJump(state.current().DoubleJump ? 2 : 1),
         k.opacity(),
         k.health(state.current().playerHp),
         "player",
         {
-            speed: 150,
+            speed: 50,
             isAttacking: false,
             setPosition(x, y) {
               this.pos.x = x,

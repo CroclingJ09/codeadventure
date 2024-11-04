@@ -8,8 +8,8 @@ export function testRoom(k, roomData) {
         k.fixed()
     ])
 
-    k.camScale(3)
-    k.camPos(200,480)
+    k.camScale(2.5)
+    k.camPos(230,480)
     k.setGravity(1000)
     // k.add([
     //     k.text("Hello, ça va?"),
@@ -24,11 +24,11 @@ export function testRoom(k, roomData) {
     for (const layer of roomLayers){
         if (layer.name === "Positions"){
             positions.push(...layer.objects)
+            continue
         }
 
         if (layer.name === "Collisions"){
             colliders.push(...layer.objects)
-            continue
         }
     }
 
@@ -39,4 +39,11 @@ export function testRoom(k, roomData) {
     setMapColliders(k, map, colliders)
 
     const player = map.add(makePlayer(k))
+
+    for (const position of positions){
+        if (position.name === "PlayerSpawn"){
+            player.setPosition(position.x, position.y)
+            player.setControls()
+        }
+    }
 }

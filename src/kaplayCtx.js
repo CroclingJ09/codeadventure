@@ -11,14 +11,14 @@ export const k = kaboom({
     canvas: document.getElementById("game")
 })
 
-k.loadSprite("player", "./sprites/Blue_Slime_Spritelist.png", {
-    sliceX: 13,
-    sliceY: 10,
+k.loadSprite("player", "./sprites/Player.png", {
+    sliceX: 10,
+    sliceY: 6,
     anims: {
-        idle: { from: 0, to: 7, loop: true},
-        walk: { from: 13, to: 20, loop: true},
-        run: { from: 26, to: 32, loop: true},
-        jump: { from: 52, to: 64},
+        idle: { from: 0, to: 9, loop: true},
+        walk: { from: 10, to: 17, loop: true},
+        run: { from: 20, to: 27, loop: true},
+        jump: { from: 30, to: 35},
     }
 })
 
