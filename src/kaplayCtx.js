@@ -2,8 +2,8 @@ import kaboom from "kaplay"
 
 export const scale = 2
 export const k = kaboom({
-    width: 560 * scale,
-    height: 320 * scale,
+    width: 480 * scale,
+    height: 360 * scale,
     scale,
     global: false,
 /*    touchToMouse: true,*/
