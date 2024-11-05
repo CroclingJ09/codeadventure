@@ -17,7 +17,8 @@ export function makePlayer(k) {
         k.health(state.current().playerHp),
         "player",
         {
-            speed: 50,
+            walkSpeed: 100,
+            runSpeed: 200,
             isAttacking: false,
             setPosition(x, y) {
               this.pos.x = x,
@@ -34,37 +35,47 @@ export function makePlayer(k) {
                             this.doubleJump()
                         }
 
-                        if (key === "y" && this.curAnim() !== "attack" && this.isGrounded()) {
-                            this.isAttacking = true
-                            this.add([
-                                k.pos(this.flipX ? -25 : 0, 10),
-                                k.area({
-                                    shape: new k.Rect(k.vec2(0), 25, 10),
-                                }),
-                                "sword-hitbox"
-                            ])
-                            this.play("attack")
+                        //Attack animation (unused)
 
-                            this.onAnimEnd((anim) => {
-                                if (anim === "attack") {
-                                    const swordHitbox = k.get("sword-hitbox", {recursive: true})[0]
-                                    if (swordHitbox) k.destroy(swordHitbox)
-                                    this.isAttacking = false
-                                    this.play("idle")
-                                }
-                            })
-                        }
+                        // if (key === "y" && this.curAnim() !== "attack" && this.isGrounded()) {
+                        //     this.isAttacking = true
+                        //     this.add([
+                        //         k.pos(this.flipX ? -25 : 0, 10),
+                        //         k.area({
+                        //             shape: new k.Rect(k.vec2(0), 25, 10),
+                        //         }),
+                        //         "sword-hitbox"
+                        //     ])
+                        //     this.play("attack")
+                        //
+                        //     this.onAnimEnd((anim) => {
+                        //         if (anim === "attack") {
+                        //             const swordHitbox = k.get("sword-hitbox", {recursive: true})[0]
+                        //             if (swordHitbox) k.destroy(swordHitbox)
+                        //             this.isAttacking = false
+                        //             this.play("idle")
+                        //         }
+                        //     })
+                        // }
                     })
                 )
 
                 this.controlHandler.push(
                     k.onKeyDown((key) => {
                         if (key === "left" && !this.isAttacking){
-                            if (this.curAnim() !== "walk" && this.isGrounded()) {
+                            if (this.curAnim() !== "run" && k.isKeyDown("y") && this.isGrounded()){
+                                this.play("run")
+                            }
+                            else if(this.curAnim() !== "walk" && this.isGrounded() && this){
                                 this.play("walk")
                             }
                             this.flipX = true
-                            this.move(-this.speed, 0)
+                            if (k.isKeyDown("y")){
+                                this.move(-this.runSpeed,0)
+                            }
+                            else{
+                                this.move(-this.walkSpeed, 0)
+                            }
                             return
                         }
 
@@ -73,7 +84,7 @@ export function makePlayer(k) {
                                 this.play("walk")
                             }
                             this.flipX = false
-                            this.move(this.speed, 0)
+                            this.move(this.walkSpeed, 0)
                             return
                         }
                     })
