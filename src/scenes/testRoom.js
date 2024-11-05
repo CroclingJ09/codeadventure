@@ -9,7 +9,7 @@ export function testRoom(k, roomData) {
     ])
 
     k.camScale(2.5)
-    k.camPos(230,480)
+    k.camPos(200,480)
     k.setGravity(1000)
     // k.add([
     //     k.text("Hello, ça va?"),
@@ -39,6 +39,10 @@ export function testRoom(k, roomData) {
     setMapColliders(k, map, colliders)
 
     const player = map.add(makePlayer(k))
+
+    player.onUpdate(() => {
+        k.camPos(player.pos)
+    })
 
     for (const position of positions){
         if (position.name === "PlayerSpawn"){
