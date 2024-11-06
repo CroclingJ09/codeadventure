@@ -5,7 +5,7 @@ export function makePlayer(k) {
         k.pos(),
         k.sprite("player"),
         k.area({
-            shape: new k.Rect(k.vec2(0,0), 24, 32)
+            shape: new k.Rect(k.vec2(0,0), 12, 24)
         }),
         k.anchor("bot"),
         k.body({
