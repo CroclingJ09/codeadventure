@@ -63,10 +63,10 @@ export function makePlayer(k) {
                 this.controlHandler.push(
                     k.onKeyDown((key) => {
                         if (key === "left" && !this.isAttacking){
-                            if (this.curAnim() !== "run" && k.isKeyDown("y") && this.isGrounded()){
+                            if(this.curAnim() !== "run" && this.isGrounded() && k.isKeyDown("y")){
                                 this.play("run")
                             }
-                            else if(this.curAnim() !== "walk" && this.isGrounded() && this){
+                            else if (this.curAnim() !== "walk" && this.isGrounded() && !k.isKeyDown("y")){
                                 this.play("walk")
                             }
                             this.flipX = true
@@ -80,11 +80,19 @@ export function makePlayer(k) {
                         }
 
                         if (key === "right" && !this.isAttacking){
-                            if (this.curAnim() !== "walk" && this.isGrounded()) {
+                            if(this.curAnim() !== "run" && this.isGrounded() && k.isKeyDown("y")){
+                                this.play("run")
+                            }
+                            else if (this.curAnim() !== "walk" && this.isGrounded() && !k.isKeyDown("y")){
                                 this.play("walk")
                             }
                             this.flipX = false
-                            this.move(this.walkSpeed, 0)
+                            if (k.isKeyDown("y")){
+                                this.move(this.runSpeed,0)
+                            }
+                            else{
+                                this.move(this.walkSpeed, 0)
+                            }
                             return
                         }
                     })
