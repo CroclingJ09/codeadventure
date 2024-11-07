@@ -48,6 +48,8 @@ export function testRoom(k, roomData) {
         if (position.name === "PlayerSpawn"){
             player.setPosition(position.x, position.y)
             player.setControls()
+            player.setEvents()
+            player.enablePassthrough()
         }
     }
 }
