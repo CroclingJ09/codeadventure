@@ -41,7 +41,28 @@ export function testRoom(k, roomData) {
     const player = map.add(makePlayer(k))
 
     player.onUpdate(() => {
-        k.camPos(player.pos)
+        if (player.pos.y >= 480 ){
+            if (player.pos.x <= 200){
+                k.camPos(200,480)
+            }
+            else if (player.pos.x >= 1400){
+                k.camPos(1400,480)
+            }
+            else{
+                k.camPos(player.pos.x, 480)
+            }
+
+        }
+        else if (player.pos.x <= 200){
+            k.camPos(200, player.pos.y)
+        }
+        else if (player.pos.x >= 1400){
+            k.camPos(1400, player.pos.y)
+        }
+        else{
+            k.camPos(player.pos)
+        }
+
     })
 
     for (const position of positions){
