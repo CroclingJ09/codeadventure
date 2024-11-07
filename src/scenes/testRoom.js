@@ -71,6 +71,7 @@ export function testRoom(k, roomData) {
             player.setControls()
             player.setEvents()
             player.enablePassthrough()
+            player.respawnIfOutOfBounds(640, "testRoom")
         }
     }
 }
