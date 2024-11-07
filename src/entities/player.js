@@ -24,6 +24,13 @@ export function makePlayer(k) {
               this.pos.x = x,
               this.pos.y = y
             },
+            enablePassthrough(){
+                this.onBeforePhysicsResolve((collision) => {
+                    if (collision.target.is("SemiSolid") && this.isJumping()){
+                        collision.preventResolution()
+                    }
+                })
+            },
             setControls() {
                 this.controlHandler = []
 
@@ -107,6 +114,23 @@ export function makePlayer(k) {
                             this.play("idle")
                     })
                 )
+            },
+            setEvents() {
+                this.onFall(() => {
+
+                })
+
+                this.onFallOff(() => {
+
+                })
+
+                this.onGround(() => {
+                    this.play("idle")
+                })
+
+                this.onHeadbutt(() => {
+
+                })
             }
         },
     ])
