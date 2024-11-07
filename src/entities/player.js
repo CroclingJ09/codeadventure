@@ -115,6 +115,16 @@ export function makePlayer(k) {
                     })
                 )
             },
+            respawnIfOutOfBounds(
+                boundValue,
+                actRoom
+            ){
+                k.onUpdate(() => {
+                    if (this.pos.y > boundValue){
+                        k.go(actRoom)
+                    }
+                })
+            },
             setEvents() {
                 this.onFall(() => {
 
