@@ -18,10 +18,10 @@ export function setMapColliders(k, map, colliders) {
             continue
         }
 
-        if (collider.name === "boss-barrier") {
-            // TODO
-            continue
-        }
+        // if (collider.name === "boss-barrier") {
+        //     // TODO
+        //     continue
+        // }
 
         map.add([
             k.pos(collider.x, collider.y),
