@@ -19,6 +19,7 @@ k.loadSprite("player", "./sprites/Player.png", {
         walk: { from: 10, to: 17, loop: true},
         run: { from: 20, to: 27, loop: true},
         jump: { from: 30, to: 35},
+        doubleJump: { from: 40, to: 45}
     }
 })
 
