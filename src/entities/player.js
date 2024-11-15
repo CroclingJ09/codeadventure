@@ -177,11 +177,24 @@ export function makePlayer(k) {
                     k.setGravity(100)
                 })
                 this.onStateUpdate("onWall", () => {
-                    this.onKeyPress("x", () => {
-                        this.jumpForce = 400
-                        this.jump()
-                        this.play("jump")
-                    })
+                    if (this.flipX === false){
+                        this.onKeyPress("x", () => {
+                            if (k.isKeyDown("left")){
+                                this.jumpForce = 400
+                                this.jump()
+                                this.play("jump")
+                            }
+                        })
+                    }
+                    else if(this.flipX === true){
+                        this.onKeyPress("x", () => {
+                            if (k.isKeyDown("right")){
+                                this.jumpForce = 400
+                                this.jump()
+                                this.play("jump")
+                            }
+                        })
+                    }
                 })
                 this.onStateEnter("normal", () => {
                     console.log(this.state)
