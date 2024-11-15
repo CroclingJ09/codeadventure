@@ -72,6 +72,9 @@ export function testRoom(k, roomData) {
             player.setEvents()
             player.enablePassthrough()
             player.respawnIfOutOfBounds(640, "testRoom")
+            player.dashHandler()
+            player.enableDoubleJump()
+            player.wallJumpHandler()
         }
     }
 }
