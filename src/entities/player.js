@@ -15,7 +15,7 @@ export function makePlayer(k) {
         k.doubleJump(state.current().DoubleJump ? 2 : 1),
         k.opacity(),
         k.health(state.current().playerHp),
-        k.state("normal", ["normal", "dash"]),
+        k.state("normal", ["normal", "dash", "onWall"]),
         "player",
         {
             walkSpeed: 100,
@@ -56,6 +56,7 @@ export function makePlayer(k) {
                         if (key === "c" && !this.isGrounded() && this.dashLefts === 1){
                             this.isDashing = true
                             this.enterState("dash")
+                            this.play("doubleJump")
                             this.dashLefts = 0
                         }
 
@@ -126,7 +127,8 @@ export function makePlayer(k) {
                     k.onKeyRelease(() => {
                         if (
                             this.curAnim() !== "idle" &&
-                            this.curAnim() !== "jump"
+                            this.curAnim() !== "jump" &&
+                            this.isGrounded()
                         )
                             this.play("idle")
                     })
@@ -137,7 +139,6 @@ export function makePlayer(k) {
                     k.setGravity(200)
                     this.jumpForce = 0
                     this.jump()
-                    this.play("doubleJump")
                 })
                 this.onStateUpdate("dash", () => {
                     if(this.dashTime >= 10){
@@ -161,6 +162,35 @@ export function makePlayer(k) {
                     console.log(this.dashTime)
                 })
             },
+            wallJumpHandler(){
+                this.onCollide("Wall", () => {
+                    this.enterState("onWall")
+                })
+                this.onCollideEnd("Wall", () => {
+                    this.enterState("normal")
+                })
+                this.onStateEnter("onWall", () => {
+                    console.log(this.state)
+                    this.jumpForce=0
+                    this.jump()
+                    this.play("wall")
+                    k.setGravity(100)
+                })
+                this.onStateUpdate("onWall", () => {
+                    this.onKeyPress("x", () => {
+                        this.jumpForce = 400
+                        this.jump()
+                        this.play("jump")
+                    })
+                })
+                this.onStateEnter("normal", () => {
+                    console.log(this.state)
+                    this.jumpForce=400
+                    k.setGravity(1000)
+                    this.play("fall")
+                })
+
+            },
             respawnIfOutOfBounds(
                 boundValue,
                 actRoom
@@ -173,11 +203,11 @@ export function makePlayer(k) {
             },
             setEvents() {
                 this.onFall(() => {
-
+                    this.play("fall")
                 })
 
                 this.onFallOff(() => {
-
+                    this.play("fall")
                 })
 
                 this.onGround(() => {
