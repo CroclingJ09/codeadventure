@@ -20,7 +20,7 @@ export function makePlayer(k) {
         {
             walkSpeed: 100,
             runSpeed: 200,
-            dashDistance: 200,
+            dashDistance: 400,
             dashTime:0,
             dashLefts: 1,
             isAttacking: false,
