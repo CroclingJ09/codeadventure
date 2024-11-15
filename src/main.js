@@ -1,5 +1,6 @@
 import {k} from "./kaplayCtx"
 import {testRoom} from "./scenes/testRoom.js";
+import {wallJump} from "./scenes/wallJump.js";
 
 k.loadSprite("HT_Tileset", "./HT_Tileset.png", {
     sliceX: 14,
@@ -12,6 +13,11 @@ async function main() {
     const testRoomData = await (await fetch("./maps/test.json")).json()
     k.scene("testRoom", () => {
         testRoom(k,testRoomData)
+    })
+
+    const wallJumpData = await (await fetch("./maps/walljump.json")).json()
+    k.scene("wallJump", () => {
+        wallJump(k, wallJumpData)
     })
 }
 
@@ -27,6 +33,9 @@ k.scene("intro", () => {
     ])
     k.onKeyPress("enter", () => {
         k.go("testRoom")
+    })
+    k.onKeyPress("1", () => {
+        k.go("wallJump")
     })
 })
 
