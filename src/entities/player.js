@@ -20,7 +20,7 @@ export function makePlayer(k) {
         {
             walkSpeed: 100,
             runSpeed: 200,
-            dashDistance: 400,
+            dashDistance: 200,
             dashTime:0,
             dashLefts: 1,
             isAttacking: false,
@@ -141,7 +141,7 @@ export function makePlayer(k) {
                     this.jump()
                 })
                 this.onStateUpdate("dash", () => {
-                    if(this.dashTime >= 10){
+                    if(this.dashTime >= 20){
                         console.log("STOP")
                         this.enterState("normal")
                         console.log(this.state)

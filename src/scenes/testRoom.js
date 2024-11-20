@@ -1,5 +1,6 @@
 import {setMapColliders} from "./roomUtils.js";
 import {makePlayer} from "../entities/player.js";
+import {pauseGame} from "../utils.js";
 
 export function testRoom(k, roomData) {
     k.add([
@@ -11,6 +12,7 @@ export function testRoom(k, roomData) {
     k.camScale(2.5)
     k.camPos(200,480)
     k.setGravity(1000)
+    k.paused = false
     // k.add([
     //     k.text("Hello, ça va?"),
     //     k.pos(100,100)
@@ -77,4 +79,10 @@ export function testRoom(k, roomData) {
             player.wallJumpHandler()
         }
     }
+
+    k.onUpdate(() => {
+        if (k.isKeyPressed("escape")){
+            pauseGame(k, player)
+        }
+    })
 }

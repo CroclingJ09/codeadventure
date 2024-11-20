@@ -5,6 +5,7 @@ export const k = kaboom({
     width: 480 * scale,
     height: 360 * scale,
     scale,
+    maxFPS: 60,
     global: false,
 /*    touchToMouse: true,*/
     letterbox: true,
