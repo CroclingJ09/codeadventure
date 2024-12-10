@@ -1,4 +1,5 @@
 import {state} from "../state/globalStateManager";
+import {inventory, createInventory, updateInventory} from "./inventory.js";
 
 export function makePlayer(k) {
     return k.make([
@@ -42,7 +43,7 @@ export function makePlayer(k) {
 
                 this.controlHandler.push(
                     k.onKeyPress((key) => {
-                        if (key === "x"){
+                        if (key === "x" && this.paused===false){
                             //évite de redémarrer l'animation de saut si cette dernière est en cours
                             if (this.curAnim() !== "jump") this.play("jump")
                             this.doubleJump()
@@ -50,10 +51,18 @@ export function makePlayer(k) {
 
                         //Test/debug
                         if (key === "a"){
-                            console.log(this)
+                            createInventory()
                         }
 
-                        if (key === "c" && !this.isGrounded() && this.dashLefts === 1){
+                        if (key==="s"){
+                            updateInventory(inventory, "walace")
+                        }
+
+                        if (key==="d"){
+                            console.log(inventory)
+                        }
+
+                        if (key === "c" && !this.isGrounded() && this.dashLefts === 1 && this.paused===false){
                             this.isDashing = true
                             this.enterState("dash")
                             this.play("doubleJump")
@@ -87,7 +96,7 @@ export function makePlayer(k) {
 
                 this.controlHandler.push(
                     k.onKeyDown((key) => {
-                        if (key === "left" && !this.isAttacking){
+                        if (key === "left" && !this.isAttacking && this.paused===false){
                             if(this.curAnim() !== "run" && this.isGrounded() && k.isKeyDown("y")){
                                 this.play("run")
                             }
@@ -104,7 +113,7 @@ export function makePlayer(k) {
                             return
                         }
 
-                        if (key === "right" && !this.isAttacking){
+                        if (key === "right" && !this.isAttacking && this.paused===false){
                             if(this.curAnim() !== "run" && this.isGrounded() && k.isKeyDown("y")){
                                 this.play("run")
                             }
