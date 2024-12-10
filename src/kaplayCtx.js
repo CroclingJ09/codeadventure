@@ -2,7 +2,7 @@ import kaboom from "kaplay"
 
 export const scale = 2
 export const k = kaboom({
-    width: 480 * scale,
+    width: 720 * scale,
     height: 360 * scale,
     scale,
     maxFPS: 60,
