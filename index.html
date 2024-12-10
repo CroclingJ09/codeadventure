@@ -5,22 +5,16 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Code Adventure</title>
-    <style>
-      body{
-        background-color: black;
-      }
-      #app{
-        width: 80vw;
-        max-width: 1920px;
-        height: 100vh;
-        overflow: hidden;
-        margin-inline: auto;
-      }
-    </style>
+    <link rel="stylesheet" href="public/style/style.css">
   </head>
   <body>
     <div id="app">
-      <div id="ui"></div>
+      <div id="ui">
+        <div id="inventaire"></div>
+        <div class="unpaused" id="pause">
+          <p>PAUSE</p>
+        </div>
+      </div>
       <canvas id="game"></canvas>
     </div>
 <!--    <canvas id="game"></canvas>-->
