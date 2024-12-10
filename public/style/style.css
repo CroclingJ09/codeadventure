@@ -17,6 +17,7 @@ body{
     left: 0;
     top: 0;
     pointer-events: none;
+    overflow: hidden;
 }
 
 #inventaire{
@@ -24,7 +25,20 @@ body{
     height: 100vh;
     position: absolute;
     right: 0;
-    background-color: blue;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2em;
+    overflow-y: scroll;
+    pointer-events: auto;
+    padding-top: 2em;
+}
+
+.inventory-object{
+    width: 40%;
+    height: 10em;
+    background-color: white;
 }
 
 #pause{
