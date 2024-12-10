@@ -10,7 +10,7 @@ export function testRoom(k, roomData) {
     ])
 
     k.camScale(2.5)
-    k.camPos(200,480)
+    k.camPos(290,480)
     k.setGravity(1000)
     k.paused = false
     // k.add([
@@ -44,8 +44,8 @@ export function testRoom(k, roomData) {
 
     player.onUpdate(() => {
         if (player.pos.y >= 480 ){
-            if (player.pos.x <= 200){
-                k.camPos(200,480)
+            if (player.pos.x <= 290){
+                k.camPos(290,480)
             }
             else if (player.pos.x >= 1400){
                 k.camPos(1400,480)
@@ -55,8 +55,8 @@ export function testRoom(k, roomData) {
             }
 
         }
-        else if (player.pos.x <= 200){
-            k.camPos(200, player.pos.y)
+        else if (player.pos.x <= 290){
+            k.camPos(290, player.pos.y)
         }
         else if (player.pos.x >= 1400){
             k.camPos(1400, player.pos.y)
