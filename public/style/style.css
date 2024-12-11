@@ -22,7 +22,7 @@ body{
 
 #inventaire{
     width: 20vw;
-    height: 100vh;
+    max-height: 100vh;
     position: absolute;
     right: 0;
     display: flex;
@@ -33,6 +33,17 @@ body{
     overflow-y: scroll;
     pointer-events: auto;
     padding-top: 2em;
+    margin-bottom: 10em;
+    opacity: 50%;
+    scrollbar-width: none;
+}
+
+#inventaire:hover{
+    opacity: 100%;
+}
+
+#inventaire::-webkit-scrollbar{
+    display: none;
 }
 
 .inventory-object{
