@@ -24,7 +24,7 @@ async function main() {
 k.scene("intro", () => {
     k.add([
         k.rect(k.width(), k.height()),
-        k.color(k.Color.fromHex("#f832e3")),
+        k.color(k.Color.fromHex("#2e4fca")),
         k.fixed()
     ])
     k.add([
