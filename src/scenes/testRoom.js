@@ -47,8 +47,8 @@ export function testRoom(k, roomData) {
             if (player.pos.x <= 290){
                 k.camPos(290,480)
             }
-            else if (player.pos.x >= 1400){
-                k.camPos(1400,480)
+            else if (player.pos.x >= 1310){
+                k.camPos(1310,480)
             }
             else{
                 k.camPos(player.pos.x, 480)
@@ -58,8 +58,8 @@ export function testRoom(k, roomData) {
         else if (player.pos.x <= 290){
             k.camPos(290, player.pos.y)
         }
-        else if (player.pos.x >= 1400){
-            k.camPos(1400, player.pos.y)
+        else if (player.pos.x >= 1310){
+            k.camPos(1310, player.pos.y)
         }
         else{
             k.camPos(player.pos)
