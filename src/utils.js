@@ -16,3 +16,24 @@ export function pauseGame(k,player){
         pausescreen.classList.add("unpaused")
     }
 }
+
+export function createPowerUpPopup(k, player, title, text){
+    let powerUpPopup = document.getElementById("unlock-window")
+    if (k.paused === false){
+        k.paused= true
+        player.paused = true
+        let powerUpTitle = document.getElementById("unlock-title")
+        let powerUpText = document.getElementById("unlock-text")
+        powerUpPopup.classList.add("paused")
+        powerUpPopup.classList.remove("unpaused")
+        powerUpTitle.innerText = title
+        powerUpText.innerHTML = text
+    }
+    else if (k.paused === true){
+        k.paused= false
+        player.paused = false
+        powerUpPopup.classList.add("unpaused")
+        powerUpPopup.classList.remove("paused")
+    }
+
+}
