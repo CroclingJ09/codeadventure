@@ -37,8 +37,8 @@
          "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 32, 33, 33, 34, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -100,17 +100,6 @@
          "id":4,
          "name":"Collisions",
          "objects":[
-                {
-                 "height":0,
-                 "id":3,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":1055.33,
-                 "y":-31.3333
-                }, 
                 {
                  "height":64,
                  "id":6,
@@ -363,6 +352,17 @@
                  "width":160,
                  "x":96,
                  "y":352
+                }, 
+                {
+                 "height":64,
+                 "id":41,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":128,
+                 "x":960,
+                 "y":96
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -386,6 +386,52 @@
                  "width":0,
                  "x":96,
                  "y":448
+                }, 
+                {
+                 "height":0,
+                 "id":43,
+                 "name":"InteractZone1",
+                 "point":true,
+                 "rotation":0,
+                 "type":"InteractZone",
+                 "visible":true,
+                 "width":0,
+                 "x":768,
+                 "y":224
+                }, 
+                {
+                 "height":0,
+                 "id":51,
+                 "name":"JumpPowerUp",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":1504,
+                 "y":480
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":6,
+         "name":"AddedCollisions",
+         "objects":[
+                {
+                 "height":32,
+                 "id":45,
+                 "name":"SpawnedBlock1",
+                 "rotation":0,
+                 "type":"SpawnedBlock",
+                 "visible":true,
+                 "width":64,
+                 "x":864,
+                 "y":192
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -393,8 +439,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":6,
- "nextobjectid":37,
+ "nextlayerid":8,
+ "nextobjectid":52,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",
@@ -402,7 +448,33 @@
  "tilesets":[
         {
          "firstgid":1,
-         "source":"..\/..\/..\/..\/OneDrive\/Code Adventure\/Textures\/HT Main Land\/HT_Tileset.tsx"
+         "source":"C:\/Users\/coren\/OneDrive\/Code Adventure\/Textures\/HT Main Land\/HT_Tileset.tsx"
+        }, 
+        {
+         "columns":10,
+         "firstgid":46,
+         "image":"..\/sprites\/Player.png",
+         "imageheight":280,
+         "imagewidth":480,
+         "margin":0,
+         "name":"Player",
+         "spacing":0,
+         "tilecount":70,
+         "tileheight":40,
+         "tilewidth":48
+        }, 
+        {
+         "columns":4,
+         "firstgid":116,
+         "image":"..\/sprites\/Power-ups.png",
+         "imageheight":64,
+         "imagewidth":128,
+         "margin":0,
+         "name":"Power-ups",
+         "spacing":0,
+         "tilecount":8,
+         "tileheight":32,
+         "tilewidth":32
         }],
  "tilewidth":32,
  "type":"map",
