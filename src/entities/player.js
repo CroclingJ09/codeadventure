@@ -25,7 +25,7 @@ export function makePlayer(k) {
             dashTime:0,
             dashLefts: 1,
             isAttacking: false,
-            airDashUnlocked: false,
+            airDashUnlocked: (state.current().AirDash),
             isDashing: false,
             setPosition(x, y) {
               this.pos.x = x
@@ -62,7 +62,7 @@ export function makePlayer(k) {
                             console.log(inventory)
                         }
 
-                        if (key === "c" && !this.isGrounded() && this.dashLefts === 1 && this.paused===false){
+                        if (key === "c" && !this.isGrounded() && this.dashLefts === 1 && this.airDashUnlocked === true && this.paused===false){
                             this.isDashing = true
                             this.enterState("dash")
                             this.play("doubleJump")
