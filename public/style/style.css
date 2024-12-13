@@ -1,3 +1,8 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 body{
     background-color: black;
 }
@@ -71,6 +76,24 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#unlock-window{
+    width: 100vw;
+    height: 100vh;
+    /*background-color: grey;*/
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#unlock-bloc{
+    width: 40%;
+    height: 20%;
+    background-color: black;
+    color: white;
+    padding: 2em;
 }
 
 .unpaused{
