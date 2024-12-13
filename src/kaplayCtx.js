@@ -26,5 +26,14 @@ k.loadSprite("player", "./sprites/Player.png", {
     }
 })
 
+k.loadSprite("power-ups", "./sprites/Power-ups.png", {
+    sliceX: 4,
+    sliceY: 2,
+    anims: {
+        doubleJump: { from: 0, to: 3, loop: true},
+        airDash: { from: 4, to: 7, loop: true}
+    }
+})
+
 k.loadSprite("testRoom", "./maps/test.png")
 k.loadSprite("wallJump", "./maps/wallJump.png")
