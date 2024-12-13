@@ -1,6 +1,7 @@
 export const statePropsEnum = {
     playerHp: "playerHp",
     DoubleJump: "DoubleJump",
+    AirDash: "AirDash",
 }
 
 function initStateManager() {
