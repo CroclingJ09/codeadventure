@@ -1,6 +1,8 @@
 import {setMapColliders} from "./roomUtils.js";
 import {makePlayer} from "../entities/player.js";
-import {pauseGame} from "../utils.js";
+import {createPowerUpPopup, pauseGame} from "../utils.js";
+import {makeJumpPowerUp} from "../entities/jumpPowerUp.js";
+import {state, statePropsEnum} from "../state/globalStateManager.js";
 
 export function testRoom(k, roomData) {
     k.add([
@@ -74,15 +76,28 @@ export function testRoom(k, roomData) {
             player.setEvents()
             player.enablePassthrough()
             player.respawnIfOutOfBounds(640, "testRoom")
-            player.dashHandler()
-            player.enableDoubleJump()
-            player.wallJumpHandler()
+            // player.dashHandler()
+            // player.enableDoubleJump()
+            // player.wallJumpHandler()
+        }
+
+        if (position.name === "JumpPowerUp"){
+            if (state.current().DoubleJump === false){
+                const jumpPowerUp = map.add(makeJumpPowerUp(k))
+                jumpPowerUp.setPosition(position.x, position.y)
+            }
         }
     }
 
     k.onUpdate(() => {
         if (k.isKeyPressed("escape")){
             pauseGame(k, player)
+        }
+        else if (k.isKeyPressed("x") && k.paused === true){
+            createPowerUpPopup(k, player)
+        }
+        else if (player.airDashUnlocked === true){
+            player.enableAirDash()
         }
     })
 }
