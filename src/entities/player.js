@@ -20,7 +20,7 @@ export function makePlayer(k) {
         "player",
         {
             walkSpeed: 100,
-            runSpeed: 200,
+            runSpeed: 120,
             dashDistance: 200,
             dashTime:0,
             dashLefts: 1,
@@ -100,8 +100,13 @@ export function makePlayer(k) {
                 this.controlHandler.push(
                     k.onKeyDown((key) => {
                         if (key === "left" && !this.isAttacking && this.paused===false){
-                            if(this.curAnim() !== "run" && this.isGrounded() && k.isKeyDown("y")){
-                                this.play("run")
+                            if(this.isGrounded() && k.isKeyDown("y")){
+                                if (this.curAnim() !== "walk" && this.runSpeed <=180){
+                                    this.play("walk")
+                                }
+                                else if (this.curAnim() !== "run" && this.runSpeed > 180){
+                                    this.play("run")
+                                }
                             }
                             else if (this.curAnim() !== "walk" && this.isGrounded() && !k.isKeyDown("y")){
                                 this.play("walk")
@@ -109,6 +114,10 @@ export function makePlayer(k) {
                             this.flipX = true
                             if (k.isKeyDown("y")){
                                 this.move(-this.runSpeed,0)
+                                if (this.runSpeed <250){
+                                    this.runSpeed += 2
+                                    console.log(this.runSpeed)
+                                }
                             }
                             else{
                                 this.move(-this.walkSpeed, 0)
@@ -117,8 +126,13 @@ export function makePlayer(k) {
                         }
 
                         if (key === "right" && !this.isAttacking && this.paused===false){
-                            if(this.curAnim() !== "run" && this.isGrounded() && k.isKeyDown("y")){
-                                this.play("run")
+                            if(this.isGrounded() && k.isKeyDown("y")){
+                                if (this.curAnim() !== "walk" && this.runSpeed <=180){
+                                    this.play("walk")
+                                }
+                                else if (this.curAnim() !== "run" && this.runSpeed > 180){
+                                    this.play("run")
+                                }
                             }
                             else if (this.curAnim() !== "walk" && this.isGrounded() && !k.isKeyDown("y")){
                                 this.play("walk")
@@ -126,6 +140,10 @@ export function makePlayer(k) {
                             this.flipX = false
                             if (k.isKeyDown("y")){
                                 this.move(this.runSpeed,0)
+                                if (this.runSpeed <250){
+                                    this.runSpeed += 2
+                                    console.log(this.runSpeed)
+                                }
                             }
                             else{
                                 this.move(this.walkSpeed, 0)
@@ -143,6 +161,11 @@ export function makePlayer(k) {
                             this.isGrounded()
                         )
                             this.play("idle")
+                    }),
+                    k.onKeyRelease((key) => {
+                        if (key === "y" || key === "right" || key === "left"){
+                            this.runSpeed = 120
+                        }
                     })
                 )
             },
