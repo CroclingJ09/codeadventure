@@ -7,8 +7,10 @@ import {makeDashPowerUp} from "../entities/dashPowerUp.js";
 
 export function testRoom(k, roomData) {
     k.add([
-        k.rect(k.width(), k.height()),
-        k.color(k.Color.fromHex("#324df8")),
+        // k.rect(k.width(), k.height()),
+        k.sprite("testBackground"),
+        k.scale(2.5),
+        // k.color(k.Color.fromHex("#324df8")),
         k.fixed()
     ])
 
