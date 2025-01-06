@@ -148,6 +148,7 @@ export function makePlayer(k) {
                     k.setGravity(200)
                     this.jumpForce = 0
                     this.jump()
+                    this.dashTime=0
                 })
                 this.onStateUpdate("dash", () => {
                     if(this.dashTime >= 20){
@@ -160,15 +161,17 @@ export function makePlayer(k) {
                         this.dashTime = 0
                         return
                     }
+                    else{
+                        this.dashTime++
+                        console.log(this.dashTime)
+                    }
                     if (this.flipX === false){
-                        // this.move(this.dashDistance,0)
-                        this.moveTo(k.vec2(this.pos.x + 2000, 0), this.dashDistance)
+                        this.move(this.dashDistance,0)
+                        // this.moveTo(k.vec2(this.pos.x + 2000, 0), this.dashDistance)
                     }
                     else if(this.flipX === true){
                         this.move(-this.dashDistance,0)
                     }
-                    this.dashTime++
-                    console.log(this.dashTime)
                 })
             },
             wallJumpHandler(){
