@@ -19,7 +19,6 @@ export function setMapColliders(k, map, colliders) {
         }
 
         // if (collider.name === "boss-barrier") {
-        //     // TODO
         //     continue
         // }
 
