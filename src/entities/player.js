@@ -45,7 +45,10 @@ export function makePlayer(k) {
                     k.onKeyPress((key) => {
                         if (key === "x" && this.paused===false){
                             //évite de redémarrer l'animation de saut si cette dernière est en cours
-                            if (this.curAnim() !== "jump") this.play("jump")
+                            this.onDoubleJump(() => {
+                                this.play("doubleJump")
+                            })
+                            if (this.curAnim() !== "jump" && this.curAnim() !== "doubleJump") this.play("jump")
                             this.doubleJump()
                         }
 
