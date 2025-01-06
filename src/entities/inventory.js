@@ -6,9 +6,22 @@ export function createInventory(){
 }
 
 export function updateInventory(inventory, object){
+    let imgLink = ""
+    console.log(object)
+    switch (object){
+        case "walace":
+            imgLink = "public/sprites/Bush.png"
+            break;
+    }
+    console.log(imgLink)
     inventory.push(object)
     const inventoryBlock = document.getElementById("inventaire")
-    inventoryBlock.innerHTML += `<div class="inventory-object" id="` + inventory[inventory.length - 1] +`">` + inventory[inventory.length - 1] +`</div>`
+    inventoryBlock.innerHTML += `
+        <div class="inventory-object" id="` + inventory[inventory.length - 1] +`">
+           <img class="object-image" src="`+ imgLink +`" alt="object">
+        </div>`
+
+
 }
 
 export {inventory}
