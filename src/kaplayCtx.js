@@ -36,4 +36,5 @@ k.loadSprite("power-ups", "./sprites/Power-ups.png", {
 })
 
 k.loadSprite("testRoom", "./maps/test.png")
+k.loadSprite("testBackground", "./sprites/HT_Background.png")
 k.loadSprite("wallJump", "./maps/wallJump.png")
