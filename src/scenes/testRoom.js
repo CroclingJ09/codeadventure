@@ -3,6 +3,7 @@ import {makePlayer} from "../entities/player.js";
 import {createPowerUpPopup, pauseGame} from "../utils.js";
 import {makeJumpPowerUp} from "../entities/jumpPowerUp.js";
 import {state, statePropsEnum} from "../state/globalStateManager.js";
+import {makeDashPowerUp} from "../entities/dashPowerUp.js";
 
 export function testRoom(k, roomData) {
     k.add([
@@ -76,7 +77,7 @@ export function testRoom(k, roomData) {
             player.setEvents()
             player.enablePassthrough()
             player.respawnIfOutOfBounds(640, "testRoom")
-            // player.dashHandler()
+            player.dashHandler()
             // player.enableDoubleJump()
             // player.wallJumpHandler()
         }
@@ -85,6 +86,13 @@ export function testRoom(k, roomData) {
             if (state.current().DoubleJump === false){
                 const jumpPowerUp = map.add(makeJumpPowerUp(k))
                 jumpPowerUp.setPosition(position.x, position.y)
+            }
+        }
+
+        if (position.name === "DashPowerUp"){
+            if (state.current().AirDash === false){
+                const dashPowerUp = map.add(makeDashPowerUp(k))
+                dashPowerUp.setPosition(position.x, position.y)
             }
         }
     }
