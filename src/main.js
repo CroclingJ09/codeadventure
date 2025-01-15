@@ -1,12 +1,16 @@
 import {k} from "./kaplayCtx"
 import {testRoom} from "./scenes/testRoom.js";
 import {wallJump} from "./scenes/wallJump.js";
+import platform from "platform"
+import {browserChecker} from "./browserChecker.js";
 
-k.loadSprite("HT_Tileset", "./HT_Tileset.png", {
-    sliceX: 14,
-    sliceY: 3,
-})
+console.log(platform.name)
+browserChecker()
 
+// k.loadSprite("HT_Tileset", "./HT_Tileset.png", {
+//     sliceX: 14,
+//     sliceY: 3,
+// })
 k.setBackground(k.Color.fromHex("#000000"))
 
 async function main() {
