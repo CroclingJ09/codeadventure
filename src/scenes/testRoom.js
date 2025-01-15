@@ -4,6 +4,8 @@ import {createPowerUpPopup, pauseGame} from "../utils.js";
 import {makeJumpPowerUp} from "../entities/jumpPowerUp.js";
 import {state, statePropsEnum} from "../state/globalStateManager.js";
 import {makeDashPowerUp} from "../entities/dashPowerUp.js";
+import {makeInteractZone} from "../entities/interactZones.js";
+import {makeDivZone} from "../entities/DivBlocks.js";
 
 export function testRoom(k, roomData) {
     k.add([
@@ -15,7 +17,7 @@ export function testRoom(k, roomData) {
     ])
 
     k.camScale(2.5)
-    k.camPos(290,480)
+    k.camPos(290,800)
     k.setGravity(1000)
     k.paused = false
     // k.add([
@@ -48,15 +50,15 @@ export function testRoom(k, roomData) {
     const player = map.add(makePlayer(k))
 
     player.onUpdate(() => {
-        if (player.pos.y >= 480 ){
+        if (player.pos.y >= 800 ){
             if (player.pos.x <= 290){
-                k.camPos(290,480)
+                k.camPos(290,800)
             }
             else if (player.pos.x >= 1310){
-                k.camPos(1310,480)
+                k.camPos(1310,800)
             }
             else{
-                k.camPos(player.pos.x, 480)
+                k.camPos(player.pos.x, 800)
             }
 
         }
@@ -78,7 +80,7 @@ export function testRoom(k, roomData) {
             player.setControls()
             player.setEvents()
             player.enablePassthrough()
-            player.respawnIfOutOfBounds(640, "testRoom")
+            player.respawnIfOutOfBounds(1000, "testRoom")
             player.dashHandler()
             // player.enableDoubleJump()
             // player.wallJumpHandler()
@@ -96,6 +98,16 @@ export function testRoom(k, roomData) {
                 const dashPowerUp = map.add(makeDashPowerUp(k))
                 dashPowerUp.setPosition(position.x, position.y)
             }
+        }
+
+        if(position.type === "InteractZone"){
+            const interactZone = map.add(makeInteractZone(k))
+            interactZone.setPosition(position.x, position.y)
+        }
+
+        if (position.type === "DivBlock"){
+            const divBlock = map.add(makeDivZone(k))
+            divBlock.setPosition(position.x, position.y)
         }
     }
 
