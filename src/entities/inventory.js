@@ -12,6 +12,8 @@ export function updateInventory(inventory, object){
         case "walace":
             imgLink = "public/sprites/Bush.png"
             break;
+        case "divBlock":
+            imgLink = "public/sprites/objects/divBloc.png"
     }
     console.log(imgLink)
     inventory.push(object)
