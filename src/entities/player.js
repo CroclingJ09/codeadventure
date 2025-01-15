@@ -116,7 +116,7 @@ export function makePlayer(k) {
                                 this.move(-this.runSpeed,0)
                                 if (this.runSpeed <250){
                                     this.runSpeed += 2
-                                    console.log(this.runSpeed)
+                                    // console.log(this.runSpeed)
                                 }
                             }
                             else{
@@ -142,7 +142,7 @@ export function makePlayer(k) {
                                 this.move(this.runSpeed,0)
                                 if (this.runSpeed <250){
                                     this.runSpeed += 2
-                                    console.log(this.runSpeed)
+                                    // console.log(this.runSpeed)
                                 }
                             }
                             else{
@@ -242,6 +242,11 @@ export function makePlayer(k) {
                 })
 
             },
+            // interactHandler(){
+            //     if (k.isKeyPressed("c") && this.isGrounded()) {
+            //         console.log("Interaction Zone")
+            //     }
+            // },
             respawnIfOutOfBounds(
                 boundValue,
                 actRoom
