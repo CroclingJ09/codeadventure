@@ -35,6 +35,14 @@ k.loadSprite("power-ups", "./sprites/Power-ups.png", {
     }
 })
 
+k.loadSprite("HT_Objects", "./sprites/objects/HT_objects.png", {
+    sliceX: 4,
+    sliceY: 3,
+    anims: {
+        divBlock: { from: 0, to: 3, loop: true}
+    }
+})
+
 k.loadSprite("testRoom", "./maps/test.png")
 k.loadSprite("testBackground", "./sprites/HT_Background.png")
 k.loadSprite("wallJump", "./maps/wallJump.png")
