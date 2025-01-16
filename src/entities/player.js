@@ -240,13 +240,7 @@ export function makePlayer(k) {
                     k.setGravity(1000)
                     this.play("fall")
                 })
-
             },
-            // interactHandler(){
-            //     if (k.isKeyPressed("c") && this.isGrounded()) {
-            //         console.log("Interaction Zone")
-            //     }
-            // },
             respawnIfOutOfBounds(
                 boundValue,
                 actRoom
