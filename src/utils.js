@@ -1,5 +1,7 @@
 export function pauseGame(k,player){
     let pausescreen = document.getElementById("pause")
+    let powerUpPopup = document.getElementById("unlock-window")
+    let interactPopup = document.getElementById("interact-block")
     console.log(pausescreen)
     if (k.paused === false){
         console.log("pause")
@@ -14,6 +16,10 @@ export function pauseGame(k,player){
         player.paused = false
         pausescreen.classList.remove("paused")
         pausescreen.classList.add("unpaused")
+        powerUpPopup.classList.add("unpaused")
+        powerUpPopup.classList.remove("paused")
+        interactPopup.classList.add("unpaused")
+        interactPopup.classList.remove("paused")
     }
 }
 
@@ -36,4 +42,11 @@ export function createPowerUpPopup(k, player, title, text){
         powerUpPopup.classList.remove("paused")
     }
 
+}
+
+export function createInteractPopup(k, player){
+    let interactPopup = document.getElementById("interact-block")
+    console.log(interactPopup)
+    interactPopup.classList.add("paused")
+    interactPopup.classList.remove("unpaused")
 }
