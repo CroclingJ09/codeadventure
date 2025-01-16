@@ -121,6 +121,30 @@ body{
     font-size: 2rem;
 }
 
+#interact-block{
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#interact-window{
+    margin-right: 400px;
+    width: 1000px;
+    height: 40%;
+    padding: 1em;
+    background-color: black;
+    color: white;
+    font-family: "Micro 5", serif;
+    font-size: 3rem;
+}
+
+#drop-zone{
+    width: 150px;
+    height: 150px;
+    border: solid white 5px;
+}
+
 .unpaused{
     display: none;
 }
