@@ -5,7 +5,7 @@ export function createInventory(){
     return inventory
 }
 
-export function updateInventory(inventory, object){
+export function updateInventory(inventory, object, objectID){
     let imgLink = ""
     console.log(object)
     switch (object){
@@ -16,10 +16,10 @@ export function updateInventory(inventory, object){
             imgLink = "public/sprites/objects/divBloc.png"
     }
     console.log(imgLink)
-    inventory.push(object)
+    inventory.push(objectID)
     const inventoryBlock = document.getElementById("inventaire")
     inventoryBlock.innerHTML += `
-        <div class="inventory-object" id="` + inventory[inventory.length - 1] +`">
+        <div class="inventory-object" id="` + objectID +`">
            <img class="object-image" src="`+ imgLink +`" alt="object">
         </div>`
 

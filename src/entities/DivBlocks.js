@@ -1,12 +1,12 @@
 import {inventory, updateInventory} from "./inventory.js";
 
-export function makeDivZone(k, pos) {
+export function makeDivZone(k, divBlockID) {
     const divZone = k.make([
         k.sprite("HT_Objects", {anim: "divBlock"}),
         k.area({
             shape: new k.Rect(k.vec2(0,0), 32, 32)
         }),
-        k.pos(pos),
+        k.pos(),
         {
             setPosition(x, y) {
                 this.pos.x = x
@@ -18,7 +18,7 @@ export function makeDivZone(k, pos) {
     divZone.onCollide("player", (player) => {
         k.destroy(divZone)
         console.log("Div Block")
-        updateInventory(inventory, "divBlock")
+        updateInventory(inventory, "divBlock", divBlockID)
     })
 
     return divZone
