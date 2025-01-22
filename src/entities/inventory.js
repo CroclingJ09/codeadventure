@@ -1,3 +1,5 @@
+import {addDragAndDrop} from "../state/dragAndDropManager.js";
+
 let inventory = new Array()
 export function createInventory(){
     const inventoryBlock = document.getElementById("inventaire")
@@ -19,11 +21,10 @@ export function updateInventory(inventory, object, objectID){
     inventory.push(objectID)
     const inventoryBlock = document.getElementById("inventaire")
     inventoryBlock.innerHTML += `
-        <div class="inventory-object" id="` + objectID +`">
-           <img class="object-image" src="`+ imgLink +`" alt="object">
+        <div class="inventory-object" id="` + objectID +`" draggable="true">
+           <img class="object-image" src="`+ imgLink +`" alt="object" draggable="false">
         </div>`
-
-
+    addDragAndDrop(objectID)
 }
 
 export {inventory}

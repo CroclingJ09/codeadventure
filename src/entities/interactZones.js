@@ -1,5 +1,6 @@
 import {makePlayer} from "./player.js";
 import {createInteractPopup} from "../utils.js";
+import {createDropZone} from "../state/dragAndDropManager.js";
 
 export function makeInteractZone(k, pos) {
     const interactZone = k.make([
@@ -23,6 +24,7 @@ export function makeInteractZone(k, pos) {
                 k.paused = true
                 player.paused = true
                 createInteractPopup(k, player)
+                createDropZone()
             }
         }
     })
