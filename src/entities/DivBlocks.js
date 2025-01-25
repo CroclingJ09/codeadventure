@@ -18,7 +18,7 @@ export function makeDivZone(k, divBlockID) {
     divZone.onCollide("player", (player) => {
         k.destroy(divZone)
         console.log("Div Block")
-        updateInventory(inventory, "divBlock", divBlockID)
+        updateInventory(inventory, "divBlock", divBlockID, k, player)
     })
 
     return divZone
