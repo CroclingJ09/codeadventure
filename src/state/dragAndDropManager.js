@@ -1,4 +1,4 @@
-import {focusOnCanvas} from "../scenes/testRoom.js";
+import {focusOnCanvas} from "../utils.js";
 import {pauseGame} from "../utils.js";
 
 export function addDragAndDrop(id, k, player){
