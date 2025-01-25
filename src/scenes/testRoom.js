@@ -102,7 +102,7 @@ export function testRoom(k, roomData) {
         }
 
         if(position.type === "InteractZone"){
-            const interactZone = map.add(makeInteractZone(k))
+            const interactZone = map.add(makeInteractZone(k, position.name))
             interactZone.setPosition(position.x, position.y)
         }
 
