@@ -50,3 +50,7 @@ export function createInteractPopup(k, player){
     interactPopup.classList.add("paused")
     interactPopup.classList.remove("unpaused")
 }
+
+export function focusOnCanvas(){
+    document.getElementById("game").focus()
+}
