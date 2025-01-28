@@ -19,6 +19,10 @@ export function updateInventory(inventory, object, objectID, k, player){
         case "divBlock":
             imgLink = "public/sprites/objects/divBloc.png"
             objectType = "div-block"
+            break;
+        case "hrefKey1":
+            imgLink = "public/sprites/Bush.png"
+            objectType = "href-key-1"
     }
     console.log(imgLink)
     inventory.push(objectID)
@@ -27,7 +31,7 @@ export function updateInventory(inventory, object, objectID, k, player){
         <div class="inventory-object ` + objectType + `" id="` + objectID +`" draggable="true">
            <img class="object-image" src="`+ imgLink +`" alt="object" draggable="false">
         </div>`
-    addDragAndDrop(objectID, k, player)
+    // addDragAndDrop(objectID, k, player)
 }
 
 export {inventory}
