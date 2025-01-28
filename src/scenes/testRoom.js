@@ -7,7 +7,9 @@ import {makeDashPowerUp} from "../entities/dashPowerUp.js";
 import {makeInteractZone} from "../entities/interactZones.js";
 import {makeDivZone} from "../entities/DivBlocks.js";
 import {inventory} from "../entities/inventory.js";
+import {makeHrefKey} from "../entities/hrefKeys.js";
 
+export const addedColliders = []
 export function testRoom(k, roomData) {
     k.add([
         // k.rect(k.width(), k.height()),
@@ -39,6 +41,10 @@ export function testRoom(k, roomData) {
 
         if (layer.name === "Collisions"){
             colliders.push(...layer.objects)
+        }
+
+        if (layer.name === "AddedCollisions"){
+            addedColliders.push(...layer.objects)
         }
     }
 
@@ -113,6 +119,16 @@ export function testRoom(k, roomData) {
             if (inventoryCheck === false){
                 const divBlock = map.add(makeDivZone(k,position.name))
                 divBlock.setPosition(position.x, position.y)
+            }
+        }
+
+        if (position.type === "HrefKey"){
+            let inventoryCheck = inventory.includes(position.name)
+            console.log(position.name)
+            console.log(inventoryCheck)
+            if (inventoryCheck === false){
+                const hrefKey = map.add(makeHrefKey(k,position.name))
+                hrefKey.setPosition(position.x, position.y)
             }
         }
     }
