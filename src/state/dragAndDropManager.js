@@ -1,18 +1,33 @@
 import {focusOnCanvas} from "../utils.js";
 import {pauseGame} from "../utils.js";
+import {currInteractZone} from "../entities/interactZones.js";
+import {inventory} from "../entities/inventory.js";
+import {addedColliders} from "../scenes/testRoom.js";
+import {addDivBlock} from "../scenes/roomUtils.js";
 
-export function addDragAndDrop(id, k, player){
-    const dropObject = document.getElementById(id)
-    console.log(dropObject)
+export function addDragAndDrop(k, player){
+    // const dropObject = document.getElementById(id)
+    // console.log(dropObject)
+    const dropObjectsHTML = document.getElementsByClassName("inventory-object")
+    console.log(dropObjectsHTML)
+    let dropObjects = Array.from(dropObjectsHTML)
+    console.log(dropObjects)
     const dropZone = document.getElementById("drop-zone")
     console.log(dropZone)
+    let draggedObject = null
+    console.log(currInteractZone)
 
-    dropObject.addEventListener('dragstart', function(event) {
-        console.log(event)
-    })
+    dropObjects.forEach((dropObject) => {
+        dropObject.addEventListener('dragstart', function(event) {
+            console.log(this)
+            draggedObject = this
+            console.log(draggedObject)
+            console.log(draggedObject.className)
+        })
 
-    dropObject.addEventListener('drag', function (event){
-        console.log(event)
+        dropObject.addEventListener('drag', function (event){
+
+        })
     })
 
     dropZone.addEventListener('click', function() {
@@ -25,35 +40,37 @@ export function addDragAndDrop(id, k, player){
     })
 
     dropZone.addEventListener('drop', function (event) {
-        dropElement(dropObject, dropZone, k, player)
+        // dropElement(dropObject, dropZone, k, player)
         // console.log("drop-moi ça")
         // dropZone.append(dropObject)
         // pauseGame(k,player)
         // focusOnCanvas()
+        console.log(currInteractZone)
+        switch (currInteractZone){
+            case "InteractZone1":
+                if (draggedObject.className.includes("div-block")){
+                    console.log("drop-moi ça")
+                    console.log(addedColliders)
+                    console.log(event)
+                    // dropZone.append(dropObject)
+                    dropZone.append(draggedObject)
+                    addDivBlock(k, addedColliders, "SpawnedBlock1")
+                    // let objectIndex = inventory.indexOf(dropObject)
+                    // console.log(objectIndex)
+
+                    pauseGame(k,player)
+                    focusOnCanvas()
+                    console.log("finish")
+                    return
+                }
+                else{
+                    console.log("mauvaise réponse")
+                    focusOnCanvas()
+                    return;
+                }
+                break;
+            case "InteractZone2":
+        }
+        console.log(dropZone)
     })
-}
-
-export function dropElement(dropObject, dropZone, k, player){
-    // const dropZone = document.getElementById("drop-zone")
-    switch (dropZone.className){
-        case "InteractZone1":
-            if (dropObject.className === "div-block"){
-                console.log("drop-moi ça")
-                dropZone.append(dropObject)
-                pauseGame(k,player)
-                focusOnCanvas()
-            }
-            else{
-                console.log("mauvaise réponse")
-                focusOnCanvas()
-            }
-    }
-    console.log(dropZone)
-
-
-
-    // dropZone.addEventListener('click', function() {
-    //     console.log(dropZone)
-    // })
-
 }
