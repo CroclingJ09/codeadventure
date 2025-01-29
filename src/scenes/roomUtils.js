@@ -48,6 +48,7 @@ export function addDivBlock(k, addedColliders, addedcolliderName){
                 }),
                 // évite d'être soumis à la gravité (les objects le sont par défaut
                 k.body({isStatic: true}),
+                k.sprite("divBlock"),
                 "collider",
                 addedCollider.type,
             ])

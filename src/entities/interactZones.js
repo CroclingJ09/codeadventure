@@ -5,7 +5,7 @@ import {addDragAndDrop} from "../state/dragAndDropManager.js";
 export let currInteractZone = null
 export function makeInteractZone(k, name) {
     const interactZone = k.make([
-        k.sprite("player", {anim: "wall"}),
+        k.sprite("interact-zone", {anim: "interact"}),
         k.area({
             shape: new k.Rect(k.vec2(0,0), 32, 32)
         }),
