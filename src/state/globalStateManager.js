@@ -2,6 +2,8 @@ export const statePropsEnum = {
     playerHp: "playerHp",
     DoubleJump: "DoubleJump",
     AirDash: "AirDash",
+    RespawnPositionX: "ResPosX",
+    RespawnPositionY: "ResPosY",
 }
 
 function initStateManager() {
@@ -11,6 +13,8 @@ function initStateManager() {
         DoubleJump: false,
         AirDash: false,
         WallJump: false,
+        RespawnPositionX: null,
+        RespawnPositionY: null,
     }
 
     return {

@@ -1,6 +1,6 @@
 import {setMapColliders} from "./roomUtils.js";
 import {makePlayer} from "../entities/player.js";
-import {createPowerUpPopup, pauseGame} from "../utils.js";
+import {createPowerUpPopup, focusOnCanvas, pauseGame} from "../utils.js";
 import {makeJumpPowerUp} from "../entities/jumpPowerUp.js";
 import {state, statePropsEnum} from "../state/globalStateManager.js";
 import {makeDashPowerUp} from "../entities/dashPowerUp.js";
@@ -83,7 +83,12 @@ export function testRoom(k, roomData) {
 
     for (const position of positions){
         if (position.name === "PlayerSpawn"){
-            player.setPosition(position.x, position.y)
+            if (state.current().RespawnPositionX === null && state.current().RespawnPositionY === null){
+                player.setPosition(position.x, position.y)
+            }
+            else{
+                player.setPosition(state.current().RespawnPositionX, state.current().RespawnPositionY)
+            }
             player.setControls()
             player.setEvents()
             player.enablePassthrough()
@@ -144,4 +149,6 @@ export function testRoom(k, roomData) {
             player.enableAirDash()
         }
     })
+
+    document.addEventListener("click", focusOnCanvas)
 }
