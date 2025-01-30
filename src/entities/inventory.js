@@ -34,4 +34,14 @@ export function updateInventory(inventory, object, objectID, k, player){
     // addDragAndDrop(objectID, k, player)
 }
 
+export function removeItem (inventory, item){
+    const index = inventory.indexOf(item)
+
+    if (index !==-1){
+        inventory.splice(index, 1)
+    }
+
+    console.log(inventory)
+}
+
 export {inventory}
