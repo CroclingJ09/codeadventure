@@ -1,11 +1,11 @@
-import {focusOnCanvas} from "../utils.js";
+import {focusOnCanvas, playAfterRightDrop} from "../utils.js";
 import {pauseGame} from "../utils.js";
 import {currInteractZone} from "../entities/interactZones.js";
-import {inventory} from "../entities/inventory.js";
+import {inventory, removeItem} from "../entities/inventory.js";
 import {addedColliders} from "../scenes/testRoom.js";
 import {addDivBlock} from "../scenes/roomUtils.js";
 
-export function addDragAndDrop(k, player){
+export function addDragAndDrop(k, player, interactZone){
     // const dropObject = document.getElementById(id)
     // console.log(dropObject)
     const dropObjectsHTML = document.getElementsByClassName("inventory-object")
@@ -49,28 +49,29 @@ export function addDragAndDrop(k, player){
         switch (currInteractZone){
             case "InteractZone1":
                 if (draggedObject.className.includes("div-block")){
+                    k.destroy(interactZone)
+                    removeItem(inventory, draggedObject.id)
                     console.log("drop-moi ça")
                     console.log(addedColliders)
                     console.log(event)
                     // dropZone.append(dropObject)
                     dropZone.append(draggedObject)
                     addDivBlock(k, addedColliders, "SpawnedBlock1")
+                    dropZone.innerHTML= ""
                     // let objectIndex = inventory.indexOf(dropObject)
                     // console.log(objectIndex)
 
-                    pauseGame(k,player)
-                    focusOnCanvas()
+                    playAfterRightDrop(k, player)
                     console.log("finish")
                     return
                 }
                 else{
                     console.log("mauvaise réponse")
-                    focusOnCanvas()
                     return;
                 }
                 break;
             case "InteractZone2":
         }
-        console.log(dropZone)
+        focusOnCanvas()
     })
 }

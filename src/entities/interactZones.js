@@ -30,7 +30,7 @@ export function makeInteractZone(k, name) {
                 player.paused = true
                 createInteractPopup(k, player)
                 // createDropZone(name)
-                addDragAndDrop(k, player)
+                addDragAndDrop(k, player, interactZone)
             }
         }
     })

@@ -54,3 +54,14 @@ export function createInteractPopup(k, player){
 export function focusOnCanvas(){
     document.getElementById("game").focus()
 }
+
+export function playAfterRightDrop(k, player){
+    let interactPopup = document.getElementById("interact-block")
+
+    if(k.paused === true){
+        k.paused = false
+        player.paused = false
+        interactPopup.classList.add("unpaused")
+        interactPopup.classList.remove("paused")
+    }
+}
