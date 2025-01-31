@@ -1,5 +1,4 @@
 import {focusOnCanvas, playAfterRightDrop} from "../utils.js";
-import {pauseGame} from "../utils.js";
 import {currInteractZone} from "../entities/interactZones.js";
 import {inventory, removeItem} from "../entities/inventory.js";
 import {addedColliders} from "../scenes/testRoom.js";
@@ -37,14 +36,10 @@ export function addDragAndDrop(k, player, interactZone){
     dropZone.addEventListener('dragover', function (event) {
         event.preventDefault()
         console.log("au-dessus")
+        console.log(k.paused, player.paused)
     })
 
     dropZone.addEventListener('drop', function (event) {
-        // dropElement(dropObject, dropZone, k, player)
-        // console.log("drop-moi ça")
-        // dropZone.append(dropObject)
-        // pauseGame(k,player)
-        // focusOnCanvas()
         console.log(currInteractZone)
         switch (currInteractZone){
             case "InteractZone1":
@@ -60,18 +55,20 @@ export function addDragAndDrop(k, player, interactZone){
                     dropZone.innerHTML= ""
                     // let objectIndex = inventory.indexOf(dropObject)
                     // console.log(objectIndex)
-
+                    console.log(k.paused, player.paused)
                     playAfterRightDrop(k, player)
                     console.log("finish")
+                    focusOnCanvas()
                     return
                 }
                 else{
                     console.log("mauvaise réponse")
+                    focusOnCanvas()
                     return;
                 }
                 break;
             case "InteractZone2":
         }
-        focusOnCanvas()
+
     })
 }
