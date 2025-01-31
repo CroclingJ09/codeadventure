@@ -63,5 +63,6 @@ export function playAfterRightDrop(k, player){
         player.paused = false
         interactPopup.classList.add("unpaused")
         interactPopup.classList.remove("paused")
+        console.log(k.paused, player.paused)
     }
 }

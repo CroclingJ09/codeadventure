@@ -28,6 +28,7 @@ export function makeInteractZone(k, name) {
                 console.log(name)
                 k.paused = true
                 player.paused = true
+                console.log(k.paused, player.paused)
                 createInteractPopup(k, player)
                 // createDropZone(name)
                 addDragAndDrop(k, player, interactZone)
