@@ -35,6 +35,16 @@ k.loadSprite("power-ups", "./sprites/Power-ups.png", {
     }
 })
 
+k.loadSprite("checkpoints", "./sprites/Checkpoints.png", {
+    sliceX: 12,
+    sliceY: 3,
+    anims: {
+        unactivated: {from: 0, to: 11, loop: true},
+        activating: {from: 12, to: 23},
+        activated: {from: 24, to: 35, loop: true}
+    }
+})
+
 k.loadSprite("HT_Objects", "./sprites/objects/HT_objects.png", {
     sliceX: 4,
     sliceY: 3,
