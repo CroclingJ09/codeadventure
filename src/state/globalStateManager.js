@@ -2,8 +2,8 @@ export const statePropsEnum = {
     playerHp: "playerHp",
     DoubleJump: "DoubleJump",
     AirDash: "AirDash",
-    RespawnPositionX: "ResPosX",
-    RespawnPositionY: "ResPosY",
+    RespawnPositionX: "RespawnPositionX",
+    RespawnPositionY: "RespawnPositionY",
 }
 
 function initStateManager() {

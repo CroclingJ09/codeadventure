@@ -8,6 +8,7 @@ import {makeInteractZone} from "../entities/interactZones.js";
 import {makeDivZone} from "../entities/DivBlocks.js";
 import {inventory} from "../entities/inventory.js";
 import {makeHrefKey} from "../entities/hrefKeys.js";
+import {makeCheckpoints} from "../entities/checkpoints.js";
 
 export const addedColliders = []
 export function testRoom(k, roomData) {
@@ -117,6 +118,11 @@ export function testRoom(k, roomData) {
             interactZone.setPosition(position.x, position.y)
         }
 
+        if (position.type === "Checkpoint"){
+            const checkpoint = map.add(makeCheckpoints(k))
+            checkpoint.setPosition(position.x, position.y)
+        }
+
         if (position.type === "DivBlock"){
             let inventoryCheck = inventory.includes(position.name)
             console.log(position.name)
@@ -142,9 +148,9 @@ export function testRoom(k, roomData) {
         if (k.isKeyPressed("escape")){
             pauseGame(k, player)
         }
-        else if (k.isKeyPressed("x") && k.paused === true){
-            createPowerUpPopup(k, player)
-        }
+        // else if (k.isKeyPressed("x") && k.paused === true){
+        //     createPowerUpPopup(k, player)
+        // }
         else if (player.airDashUnlocked === true){
             player.enableAirDash()
         }
