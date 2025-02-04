@@ -9,6 +9,7 @@ import {makeDivZone} from "../entities/DivBlocks.js";
 import {inventory} from "../entities/inventory.js";
 import {makeHrefKey} from "../entities/hrefKeys.js";
 import {makeCheckpoints} from "../entities/checkpoints.js";
+import {makeTeleporters} from "../entities/teleporters.js";
 
 export const addedColliders = []
 export function testRoom(k, roomData) {
@@ -34,6 +35,7 @@ export function testRoom(k, roomData) {
     const map = k.add([k.pos(0,0), k.sprite("testRoom")])
     const colliders = []
     const positions = []
+    const destinations = []
     for (const layer of roomLayers){
         if (layer.name === "Positions"){
             positions.push(...layer.objects)
@@ -42,6 +44,10 @@ export function testRoom(k, roomData) {
 
         if (layer.name === "Collisions"){
             colliders.push(...layer.objects)
+        }
+
+        if (layer.name === "Destinations"){
+            destinations.push(...layer.objects)
         }
 
         if (layer.name === "AddedCollisions"){
@@ -141,6 +147,36 @@ export function testRoom(k, roomData) {
                 const hrefKey = map.add(makeHrefKey(k,position.name))
                 hrefKey.setPosition(position.x, position.y)
             }
+        }
+
+        if (position.type === "Teleporter"){
+            console.log(position.name)
+            let destinationX = null
+            let destinationY = null
+            switch (position.name){
+                case "Teleporter1-1":
+                    for (const telepos of positions){
+                        if (telepos.name === "Teleporter1-2"){
+                            destinationX = telepos.x
+                            destinationY = telepos.y
+                        }
+
+                    }
+                    break;
+                case "Teleporter1-2":
+                    for (const telepos of positions){
+                        if (telepos.name === "Teleporter1-1"){
+                            destinationX = telepos.x
+                            destinationY = telepos.y
+                        }
+
+                    }
+                    break;
+            }
+            const teleporter = map.add(makeTeleporters(k, position.name, destinationX, destinationY))
+            teleporter.setPosition(position.x, position.y)
+            console.log(teleporter.pos.x, teleporter.pos.y)
+            console.log(destinationX, destinationY)
         }
     }
 
