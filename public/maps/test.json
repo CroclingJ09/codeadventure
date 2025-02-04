@@ -535,6 +535,30 @@
                  "width":0,
                  "x":320,
                  "y":608
+                }, 
+                {
+                 "height":0,
+                 "id":62,
+                 "name":"Teleporter1-1",
+                 "point":true,
+                 "rotation":0,
+                 "type":"Teleporter",
+                 "visible":true,
+                 "width":0,
+                 "x":1024,
+                 "y":352
+                }, 
+                {
+                 "height":0,
+                 "id":64,
+                 "name":"Teleporter1-2",
+                 "point":true,
+                 "rotation":0,
+                 "type":"Teleporter",
+                 "visible":true,
+                 "width":0,
+                 "x":224,
+                 "y":96
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -564,8 +588,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":8,
- "nextobjectid":62,
+ "nextlayerid":9,
+ "nextobjectid":71,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",
@@ -589,19 +613,6 @@
          "tilewidth":48
         }, 
         {
-         "columns":4,
-         "firstgid":46,
-         "image":"..\/..\/..\/..\/codeadventure\/public\/sprites\/Power-ups.png",
-         "imageheight":64,
-         "imagewidth":128,
-         "margin":0,
-         "name":"Power-ups",
-         "spacing":0,
-         "tilecount":0,
-         "tileheight":32,
-         "tilewidth":32
-        }, 
-        {
          "columns":14,
          "firstgid":46,
          "image":"..\/..\/..\/..\/codeadventure\/public\/sprites\/HT_Tileset.png",
@@ -612,6 +623,19 @@
          "spacing":0,
          "tilecount":0,
          "tileheight":32,
+         "tilewidth":32
+        }, 
+        {
+         "columns":9,
+         "firstgid":46,
+         "image":"..\/sprites\/Teleporters.png",
+         "imageheight":384,
+         "imagewidth":288,
+         "margin":0,
+         "name":"Teleporters",
+         "spacing":0,
+         "tilecount":54,
+         "tileheight":64,
          "tilewidth":32
         }],
  "tilewidth":32,
