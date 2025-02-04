@@ -61,6 +61,19 @@ k.loadSprite("interact-zone", "./sprites/Interact_Zone.png", {
     }
 })
 
+k.loadSprite("teleporters", "./sprites/Teleporters.png", {
+    sliceX: 9,
+    sliceY: 6,
+    anims: {
+        unactivated1: 0,
+        unactivated2: 9,
+        activating1: {from: 18, to: 26},
+        activating2: {from: 27, to: 35},
+        activated1: {from: 36, to: 43, loop: true},
+        activated2: {from: 45, to: 52, loop: true}
+    }
+})
+
 k.loadSprite("divBlock", "./sprites/div-block.png")
 
 k.loadSprite("testRoom", "./maps/test.png")
