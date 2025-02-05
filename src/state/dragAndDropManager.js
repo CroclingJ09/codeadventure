@@ -4,7 +4,7 @@ import {inventory, removeItem} from "../entities/inventory.js";
 import {addedColliders} from "../scenes/testRoom.js";
 import {addDivBlock} from "../scenes/roomUtils.js";
 
-export function addDragAndDrop(k, player, interactZone){
+export function addDragAndDrop(k, player, interactZone, map){
     // const dropObject = document.getElementById(id)
     // console.log(dropObject)
     const dropObjectsHTML = document.getElementsByClassName("inventory-object")
@@ -68,6 +68,23 @@ export function addDragAndDrop(k, player, interactZone){
                 }
                 break;
             case "InteractZone2":
+                if (draggedObject.className.includes("href-key-1")){
+                    k.destroy(interactZone)
+                    removeItem(inventory, draggedObject.id)
+                    dropZone.append(draggedObject)
+                    const teleporter = map.get("Teleporter1-1")
+                    console.log(teleporter)
+                    teleporter[0].play("activating1")
+                    teleporter[0].onAnimEnd((anim) => {
+                        if (anim === "activating1"){
+                            teleporter[0].play("activated1")
+                        }
+                    })
+                    dropZone.innerHTML= ""
+                    playAfterRightDrop(k, player)
+                    focusOnCanvas()
+                    return;
+                }
         }
 
     })
