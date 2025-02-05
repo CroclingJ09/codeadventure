@@ -3,7 +3,7 @@ import {createInteractPopup} from "../utils.js";
 import {addDragAndDrop} from "../state/dragAndDropManager.js";
 // import {createDropZone} from "../state/dragAndDropManager.js";
 export let currInteractZone = null
-export function makeInteractZone(k, name) {
+export function makeInteractZone(k, name, map) {
     const interactZone = k.make([
         k.sprite("interact-zone", {anim: "interact"}),
         k.area({
@@ -15,7 +15,8 @@ export function makeInteractZone(k, name) {
                 this.pos.x = x
                 this.pos.y = y
             },
-        }
+        },
+        "interactZone"
     ])
 
     interactZone.onCollideUpdate("player", (player) => {
@@ -31,7 +32,7 @@ export function makeInteractZone(k, name) {
                 console.log(k.paused, player.paused)
                 createInteractPopup(k, player)
                 // createDropZone(name)
-                addDragAndDrop(k, player, interactZone)
+                addDragAndDrop(k, player, interactZone, map)
             }
         }
     })
