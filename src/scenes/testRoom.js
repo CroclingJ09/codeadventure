@@ -119,11 +119,6 @@ export function testRoom(k, roomData) {
             }
         }
 
-        if(position.type === "InteractZone"){
-            const interactZone = map.add(makeInteractZone(k, position.name))
-            interactZone.setPosition(position.x, position.y)
-        }
-
         if (position.type === "Checkpoint"){
             const checkpoint = map.add(makeCheckpoints(k))
             checkpoint.setPosition(position.x, position.y)
@@ -177,6 +172,11 @@ export function testRoom(k, roomData) {
             teleporter.setPosition(position.x, position.y)
             console.log(teleporter.pos.x, teleporter.pos.y)
             console.log(destinationX, destinationY)
+        }
+
+        if(position.type === "InteractZone"){
+            const interactZone = map.add(makeInteractZone(k, position.name, map))
+            interactZone.setPosition(position.x, position.y)
         }
     }
 
