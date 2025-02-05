@@ -12,7 +12,8 @@ export function makeCheckpoints(k){
                 this.pos.x = x
                 this.pos.y = y
             },
-        }
+        },
+        "checkpoints"
     ])
 
     if(state.current().RespawnPositionX === checkpoint.pos.x && state.current().RespawnPositionY === checkpoint.pos.y){

@@ -10,10 +10,15 @@ export function makeTeleporters(k, teleporterName, destinationX, destinationY){
                 this.pos.x = x
                 this.pos.y = y
             }
-        }
+        },
+        "teleporter",
+        teleporterName
     ])
 
-    if (teleporterName === "Teleporter1-1" || teleporterName === "Teleporter1-2"){
+    if (teleporterName === "Teleporter1-1"){
+        teleporter.play("unactivated1")
+    }
+    else if(teleporterName === "Teleporter1-2"){
         teleporter.play("activated1")
     }
 
