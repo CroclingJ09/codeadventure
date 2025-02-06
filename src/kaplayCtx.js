@@ -14,7 +14,7 @@ export const k = kaboom({
 
 k.loadSprite("player", "./sprites/Player.png", {
     sliceX: 10,
-    sliceY: 7,
+    sliceY: 8,
     anims: {
         idle: { from: 0, to: 9, loop: true},
         walk: { from: 10, to: 17, loop: true},
@@ -22,7 +22,9 @@ k.loadSprite("player", "./sprites/Player.png", {
         jump: { from: 30, to: 35},
         doubleJump: { from: 40, to: 45},
         fall: { from: 33, to: 35},
-        wall: {from: 60, to: 62, loop:true}
+        wall: {from: 60, to: 62, loop:true},
+        damage: { from: 45, to: 40},
+        dead: {from: 70, to: 79, speed: 5}
     }
 })
 
