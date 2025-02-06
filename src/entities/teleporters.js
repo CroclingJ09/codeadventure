@@ -25,10 +25,10 @@ export function makeTeleporters(k, teleporterName, destinationX, destinationY){
     teleporter.onCollide("player", (player) => {
         if (teleporter.curAnim() === "activated1" || teleporter.curAnim() === "activated2"){
             if (player.flipX === false){
-                player.setPosition(destinationX + 60, destinationY + 60)
+                player.setPosition(destinationX + 42, destinationY + 64)
             }
             else if (player.flipX === true){
-                player.setPosition(destinationX - 35, destinationY + 60)
+                player.setPosition(destinationX - 10, destinationY + 64)
             }
 
         }
