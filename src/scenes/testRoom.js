@@ -97,10 +97,11 @@ export function testRoom(k, roomData) {
                 player.setPosition(state.current().RespawnPositionX, state.current().RespawnPositionY)
             }
             player.setControls()
-            player.setEvents()
+            player.setEvents("testRoom")
             player.enablePassthrough()
             player.respawnIfOutOfBounds(1000, "testRoom")
             player.dashHandler()
+            player.spikeHandler()
             // player.enableDoubleJump()
             // player.wallJumpHandler()
         }
