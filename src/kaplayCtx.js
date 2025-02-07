@@ -5,8 +5,9 @@ export const k = kaboom({
     width: 720 * scale,
     height: 360 * scale,
     scale,
-    maxFPS: 60,
+    maxFPS: 120,
     global: false,
+    debugKey: "d",
 /*    touchToMouse: true,*/
     letterbox: true,
     canvas: document.getElementById("game")
@@ -23,7 +24,7 @@ k.loadSprite("player", "./sprites/Player.png", {
         doubleJump: { from: 40, to: 45},
         fall: { from: 33, to: 35},
         wall: {from: 60, to: 62, loop:true},
-        damage: { from: 45, to: 40},
+        damage: { from: 45, to: 40, speed: 10},
         dead: {from: 70, to: 79, speed: 5}
     }
 })
