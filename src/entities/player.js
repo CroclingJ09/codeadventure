@@ -12,12 +12,12 @@ export function makePlayer(k) {
         k.body({
             mass: 70,
             jumpForce: 400,
-            vel: 100
+            maxVelocity: 800
         }),
         k.doubleJump(state.current().DoubleJump ? 2 : 1),
         k.opacity(),
         k.health(state.current().playerHp),
-        k.state("normal", ["normal", "dash", "onWall"]),
+        k.state("normal", ["normal", "dash", "onWall", "damaged"]),
         "player",
         {
             walkSpeed: 100,
@@ -45,7 +45,7 @@ export function makePlayer(k) {
                 this.controlHandler.push(
                     k.onKeyPress((key) => {
                         if (this.hp() !== 0){
-                            if (key === "x" && this.paused===false && this.curAnim() !== "damage"){
+                            if (key === "x" && this.paused===false && this.curAnim() !== "damage" && this.state !== "onWall" ){
                                 //évite de redémarrer l'animation de saut si cette dernière est en cours
                                 this.onDoubleJump(() => {
                                     this.play("doubleJump")
@@ -56,16 +56,7 @@ export function makePlayer(k) {
 
                             //Test/debug
                             if (key === "a"){
-                                createInventory()
-                            }
 
-                            if (key==="s"){
-                                updateInventory(inventory, "walace")
-                            }
-
-                            if (key==="d"){
-                                // console.log(inventory)
-                                console.log(this.pos)
                             }
 
                             if (key === "c" && !this.isGrounded() && this.dashLefts === 1 && this.airDashUnlocked === true && this.paused===false){
@@ -80,7 +71,7 @@ export function makePlayer(k) {
 
                 this.controlHandler.push(
                     k.onKeyDown((key) => {
-                        if (this.hp() !== 0){
+                        if (this.hp() !== 0 && this.curAnim() !== "damage"){
                             if (key === "left" && !this.isAttacking && this.paused===false){
                                 if(this.isGrounded() && k.isKeyDown("y")){
                                     if (this.curAnim() !== "walk" && this.runSpeed <=180){
@@ -93,12 +84,13 @@ export function makePlayer(k) {
                                 else if (this.curAnim() !== "walk" && this.isGrounded() && !k.isKeyDown("y")){
                                     this.play("walk")
                                 }
-                                this.flipX = true
+                                if (this.isGrounded()){
+                                    this.flipX = true
+                                }
                                 if (k.isKeyDown("y")){
                                     this.move(-this.runSpeed,0)
-                                    if (this.runSpeed <250){
+                                    if (this.runSpeed <250 && this.isGrounded()){
                                         this.runSpeed += 2
-                                        // console.log(this.runSpeed)
                                     }
                                 }
                                 else{
@@ -119,12 +111,13 @@ export function makePlayer(k) {
                                 else if (this.curAnim() !== "walk" && this.isGrounded() && !k.isKeyDown("y")){
                                     this.play("walk")
                                 }
-                                this.flipX = false
+                                if (this.isGrounded()){
+                                    this.flipX = false
+                                }
                                 if (k.isKeyDown("y") && this.curAnim() !== "damage"){
                                     this.move(this.runSpeed,0)
-                                    if (this.runSpeed <250){
+                                    if (this.runSpeed <250 && this.isGrounded()){
                                         this.runSpeed += 2
-                                        // console.log(this.runSpeed)
                                     }
                                 }
                                 else{
@@ -167,78 +160,79 @@ export function makePlayer(k) {
                         this.applyImpulse(k.vec2(-200, 5))
                     }
                 })
-                this.onStateUpdate("dash", () => {
-                    if(this.dashTime >= 20){
-                        console.log("STOP")
+                this.onAnimEnd((anim) => {
+                    if (anim === "doubleJump" && this.state === "dash"){
                         this.enterState("normal")
-                        console.log(this.state)
                         this.isDashing=false
                         k.setGravity(1000)
                         this.jumpForce=400
                         this.dashTime = 0
-                        return
-                    }
-                    else{
-                        this.dashTime++
-                        console.log(this.dashTime)
                     }
                 })
+                // this.onStateUpdate("dash", () => {
+                //     if(this.dashTime >= 20){
+                //         this.enterState("normal")
+                //         this.isDashing=false
+                //         k.setGravity(1000)
+                //         this.jumpForce=400
+                //         this.dashTime = 0
+                //         return
+                //     }
+                //     else{
+                //         this.dashTime++
+                //     }
+                // })
             },
             wallJumpHandler(){
                 this.onCollide("Wall", () => {
+                    k.setGravity(200)
+                    this.play("wall")
+                    this.vel.y = 0
+                    this.vel.x = 0
                     this.enterState("onWall")
                 })
                 this.onCollideEnd("Wall", () => {
-                    this.enterState("normal")
-                })
-                this.onStateEnter("onWall", () => {
-                    console.log(this.state)
-                    this.jumpForce=0
-                    this.jump()
-                    this.play("wall")
-                    k.setGravity(100)
-                })
-                this.onStateUpdate("onWall", () => {
-                    if (this.flipX === false){
-                        this.onKeyPress("x", () => {
-                            if (k.isKeyDown("left")){
-                                this.jumpForce = 400
-                                this.jump()
-                                this.play("jump")
-                            }
-                        })
-                    }
-                    else if(this.flipX === true){
-                        this.onKeyPress("x", () => {
-                            if (k.isKeyDown("right")){
-                                this.jumpForce = 400
-                                this.jump()
-                                this.play("jump")
-                            }
-                        })
-                    }
-                })
-                this.onStateEnter("normal", () => {
-                    console.log(this.state)
-                    this.jumpForce=400
                     k.setGravity(1000)
                     this.play("fall")
+                    this.enterState("normal")
+                })
+                this.onStateUpdate("onWall", () => {
+                        this.onKeyPress("x", () => {
+                            if (this.state === "onWall"){
+                                if (this.flipX === false && this.curAnim() === "wall"){
+                                    this.applyImpulse(k.vec2(-500, -500))
+                                    this.flipX = true
+                                    // k.setGravity(1000)
+                                }
+                                else if (this.flipX === true && this.curAnim() === "wall"){
+                                    this.applyImpulse(k.vec2(500, -500))
+                                    this.flipX = false
+                                }
+                                this.enterState("normal")
+                            }
+                        })
+                })
+
+                this.onStateEnter("normal", () => {
+                    if (this.curAnim() !== "doubleJump"){
+                        this.play("fall")
+                    }
+
                 })
             },
             spikeHandler(){
               this.onCollide("Spikes", ()=>{
                   if (this.hp() > 0){
-                      this.jump()
-
+                      this.vel.x = 0
+                      this.vel.y = 0
                       this.play("damage")
                       if (this.flipX === false){
-                          this.applyImpulse(k.vec2(-200, 50))
+                          this.applyImpulse(k.vec2(-200,-300))
                       }
                       else if (this.flipX === true){
-                          this.applyImpulse(k.vec2(200, 50))
+                          this.applyImpulse(k.vec2(200, -300))
                       }
                       this.hurt(1)
-                      console.log(state.current().playerHp)
                   }
               })
             },
@@ -258,6 +252,7 @@ export function makePlayer(k) {
                 })
 
                 this.onFallOff(() => {
+                    if (this.state !== "damaged")
                     this.play("fall")
                 })
 
@@ -265,7 +260,6 @@ export function makePlayer(k) {
                     this.dashLefts = 1
                     this.vel.x = 0
                     if (this.hp() === 0 && this.curAnim() !== "dead"){
-                        console.log("dead")
                         this.play("dead")
                         this.onAnimEnd((anim) => {
                             if (anim === "dead"){
