@@ -1,3 +1,30 @@
+export function setCameraBorders(minX, maxX, minY, maxY, player, k){
+    player.onUpdate(() => {
+        if (player.pos.y >= maxY ){
+            if (player.pos.x <= minX){
+                k.camPos(minX,maxY)
+            }
+            else if (player.pos.x >= maxX){
+                k.camPos(maxX,maxY)
+            }
+            else{
+                k.camPos(player.pos.x, maxY)
+            }
+
+        }
+        else if (player.pos.x <= minX){
+            k.camPos(minX, player.pos.y)
+        }
+        else if (player.pos.x >= maxX){
+            k.camPos(maxX, player.pos.y)
+        }
+        else{
+            k.camPos(player.pos)
+        }
+
+    })
+}
+
 export function pauseGame(k,player){
     let pausescreen = document.getElementById("pause")
     let powerUpPopup = document.getElementById("unlock-window")
