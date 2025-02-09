@@ -3,6 +3,7 @@ import {testRoom} from "./scenes/testRoom.js";
 import {wallJump} from "./scenes/wallJump.js";
 import platform from "platform"
 import {browserChecker} from "./browserChecker.js";
+import {tutorial} from "./scenes/tutorial.js";
 
 console.log(platform.name)
 browserChecker()
@@ -23,6 +24,11 @@ async function main() {
     k.scene("wallJump", () => {
         wallJump(k, wallJumpData)
     })
+
+    const tutorialData = await (await  fetch("./maps/tutorial.json")).json()
+    k.scene("tutorial", () => {
+        tutorial(k, tutorialData)
+    })
 }
 
 k.scene("intro", () => {
@@ -32,7 +38,7 @@ k.scene("intro", () => {
         k.fixed()
     ])
     k.add([
-        k.text("Presse sur ENTER pour démarrer"),
+        k.text("Press ENTER to start"),
         k.pos(100,100)
     ])
     k.onKeyPress("enter", () => {
@@ -40,6 +46,9 @@ k.scene("intro", () => {
     })
     k.onKeyPress("1", () => {
         k.go("wallJump")
+    })
+    k.onKeyPress("2", () => {
+        k.go("tutorial")
     })
 })
 
