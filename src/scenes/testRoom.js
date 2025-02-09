@@ -1,6 +1,6 @@
 import {setMapColliders} from "./roomUtils.js";
 import {makePlayer} from "../entities/player.js";
-import {createPowerUpPopup, focusOnCanvas, pauseGame} from "../utils.js";
+import {createPowerUpPopup, focusOnCanvas, pauseGame, setCameraBorders} from "../utils.js";
 import {makeJumpPowerUp} from "../entities/jumpPowerUp.js";
 import {state, statePropsEnum} from "../state/globalStateManager.js";
 import {makeDashPowerUp} from "../entities/dashPowerUp.js";
@@ -63,30 +63,7 @@ export function testRoom(k, roomData) {
 
     const player = map.add(makePlayer(k))
 
-    player.onUpdate(() => {
-        if (player.pos.y >= 800 ){
-            if (player.pos.x <= 290){
-                k.camPos(290,800)
-            }
-            else if (player.pos.x >= 1310){
-                k.camPos(1310,800)
-            }
-            else{
-                k.camPos(player.pos.x, 800)
-            }
-
-        }
-        else if (player.pos.x <= 290){
-            k.camPos(290, player.pos.y)
-        }
-        else if (player.pos.x >= 1310){
-            k.camPos(1310, player.pos.y)
-        }
-        else{
-            k.camPos(player.pos)
-        }
-
-    })
+    setCameraBorders(290, 1310, 0, 800, player, k)
 
     for (const position of positions){
         if (position.name === "PlayerSpawn"){
