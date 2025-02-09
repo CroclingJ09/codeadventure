@@ -82,3 +82,10 @@ k.loadSprite("divBlock", "./sprites/div-block.png")
 k.loadSprite("testRoom", "./maps/test.png")
 k.loadSprite("testBackground", "./sprites/HT_Background.png")
 k.loadSprite("wallJump", "./maps/wallJump.png")
+k.loadSprite("tutorial-back", "./maps/tutorial-back.png")
+k.loadSprite("tutorial-front", "./maps/tutorial-front.png")
+k.loadSprite("tutorial-background", "./maps/tutorial-background.png", {
+    sliceX: 2,
+    sliceY: 1,
+    anims: {play : {from: 0, to: 1, loop: true, speed: 1}}
+})
