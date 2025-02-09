@@ -223,15 +223,16 @@ export function makePlayer(k) {
             spikeHandler(){
               this.onCollide("Spikes", ()=>{
                   if (this.hp() > 0){
-                      this.vel.x = 0
-                      this.vel.y = 0
+                      // this.vel.x = 0
+                      // this.vel.y = 0
                       this.play("damage")
-                      if (this.flipX === false){
-                          this.applyImpulse(k.vec2(-200,-300))
-                      }
-                      else if (this.flipX === true){
-                          this.applyImpulse(k.vec2(200, -300))
-                      }
+                      this.jump()
+                      // if (this.flipX === false){
+                      //     this.applyImpulse(k.vec2(-200,-300))
+                      // }
+                      // else if (this.flipX === true){
+                      //     this.applyImpulse(k.vec2(200, -300))
+                      // }
                       this.hurt(1)
                   }
               })
