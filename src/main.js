@@ -4,7 +4,9 @@ import {wallJump} from "./scenes/wallJump.js";
 import platform from "platform"
 import {browserChecker} from "./browserChecker.js";
 import {tutorial} from "./scenes/tutorial.js";
+import {level1} from "./scenes/level1.js";
 
+// export let addedColliders = []
 console.log(platform.name)
 browserChecker()
 
@@ -28,6 +30,11 @@ async function main() {
     const tutorialData = await (await  fetch("./maps/tutorial.json")).json()
     k.scene("tutorial", () => {
         tutorial(k, tutorialData)
+    })
+
+    const level1Data = await (await fetch("./maps/level1.json")).json()
+    k.scene("level1", () => {
+        level1(k, level1Data)
     })
 }
 
