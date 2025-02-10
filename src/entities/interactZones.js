@@ -3,7 +3,7 @@ import {createInteractPopup} from "../utils.js";
 import {addDragAndDrop} from "../state/dragAndDropManager.js";
 // import {createDropZone} from "../state/dragAndDropManager.js";
 export let currInteractZone = null
-export function makeInteractZone(k, name, map) {
+export function makeInteractZone(k, name, map, addedCollisions) {
     const interactZone = k.make([
         k.sprite("interact-zone", {anim: "interact"}),
         k.area({
@@ -26,13 +26,13 @@ export function makeInteractZone(k, name, map) {
                 // const dropZone = document.getElementById("drop-zone")
                 // dropZone.classList.add(name)
                 currInteractZone = name
-                console.log(name)
+                k.debug.log(name)
                 k.paused = true
                 player.paused = true
                 console.log(k.paused, player.paused)
-                createInteractPopup(k, player)
+                createInteractPopup(k, player, name)
                 // createDropZone(name)
-                addDragAndDrop(k, player, interactZone, map)
+                addDragAndDrop(k, player, interactZone, map, addedCollisions)
             }
         }
     })
