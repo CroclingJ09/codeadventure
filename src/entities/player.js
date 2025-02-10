@@ -220,20 +220,53 @@ export function makePlayer(k) {
 
                 })
             },
-            spikeHandler(){
+            spikeHandler(healthbar){
               this.onCollide("Spikes", ()=>{
                   if (this.hp() > 0){
-                      // this.vel.x = 0
-                      // this.vel.y = 0
+                      this.vel.x = 0
+                      this.vel.y = 0
+                      this.runSpeed = 120
                       this.play("damage")
-                      this.jump()
-                      // if (this.flipX === false){
-                      //     this.applyImpulse(k.vec2(-200,-300))
-                      // }
-                      // else if (this.flipX === true){
-                      //     this.applyImpulse(k.vec2(200, -300))
-                      // }
+                      // this.jump()
+                      if (k.isKeyDown("right")){
+                          this.applyImpulse(k.vec2(-250,-400))
+                      }
+                      else if (k.isKeyDown("left")){
+                          this.applyImpulse(k.vec2(250, -400))
+                      }
+                      else {
+                          this.applyImpulse(k.vec2(0, -500))
+                      }
+                      switch (this.hp()){
+                          case 3:
+                              healthbar.play("fullhealthdamage")
+                              healthbar.onAnimEnd((anim) => {
+                                  if (anim === "fullhealthdamage"){
+                                      healthbar.play("midhealth")
+                                  }
+                              })
+                              break;
+                          case 2:
+                              healthbar.play("midhealthdamage")
+                              healthbar.onAnimEnd((anim) => {
+                                  if (anim === "midhealthdamage"){
+                                      healthbar.play("lowhealth")
+                                  }
+                              })
+                              break;
+                          case 1:
+                              healthbar.play("lowhealthdamage")
+                              healthbar.onAnimEnd((anim) => {
+                                  if (anim === "lowhealthdamage"){
+                                      healthbar.play("nolife")
+                                  }
+                              })
+                      }
                       this.hurt(1)
+                      k.wait(0.5, () => {
+                          this.vel.x = 0
+                          this.vel.y = 0
+                      })
                   }
               })
             },
@@ -244,6 +277,7 @@ export function makePlayer(k) {
                 k.onUpdate(() => {
                     if (this.pos.y > boundValue){
                         k.go(actRoom)
+                        state.set(statePropsEnum.playerHp, 3)
                     }
                 })
             },
