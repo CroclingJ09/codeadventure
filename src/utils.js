@@ -71,11 +71,18 @@ export function createPowerUpPopup(k, player, title, text){
 
 }
 
-export function createInteractPopup(k, player){
+export function createInteractPopup(k, player, name){
     let interactPopup = document.getElementById("interact-block")
+    let interactText = document.getElementById("interact-text")
     console.log(interactPopup)
     interactPopup.classList.add("paused")
     interactPopup.classList.remove("unpaused")
+    if (name === "InteractZoneTuto"){
+        interactText.innerText = "This is an Interaction Zone. Drag objects from your inventory to activate certain events in the level"
+    }
+    else {
+        interactText.innerText = "Drag and drop objects from your inventory to activate different events on the level"
+    }
 }
 
 export function focusOnCanvas(){
