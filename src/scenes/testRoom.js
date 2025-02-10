@@ -10,9 +10,8 @@ import {inventory} from "../entities/inventory.js";
 import {makeHrefKey} from "../entities/hrefKeys.js";
 import {makeCheckpoints} from "../entities/checkpoints.js";
 import {makeTeleporters} from "../entities/teleporters.js";
-
-export const addedColliders = []
 export function testRoom(k, roomData) {
+    let addedColliders = []
     k.add([
         // k.rect(k.width(), k.height()),
         k.sprite("testBackground"),
@@ -153,7 +152,7 @@ export function testRoom(k, roomData) {
         }
 
         if(position.type === "InteractZone"){
-            const interactZone = map.add(makeInteractZone(k, position.name, map))
+            const interactZone = map.add(makeInteractZone(k, position.name, map, addedColliders))
             interactZone.setPosition(position.x, position.y)
         }
     }
