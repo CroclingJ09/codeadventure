@@ -44,4 +44,8 @@ export function removeItem (inventory, item){
     console.log(inventory)
 }
 
+export function resetInventory(inventory){
+    inventory = new Array()
+}
+
 export {inventory}
