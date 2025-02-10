@@ -29,6 +29,20 @@ k.loadSprite("player", "./sprites/Player.png", {
     }
 })
 
+k.loadSprite("healthBar", "./sprites/healthbar.png", {
+    sliceX: 6,
+    sliceY: 7,
+    anims: {
+        fullhealth: { from: 0, to: 5, loop: true},
+        midhealth: {from: 6, to: 11, loop: true},
+        lowhealth: {from: 12, to: 17, loop: true},
+        nolife: 18,
+        fullhealthdamage: {from: 24, to: 29},
+        midhealthdamage: {from: 30, to: 35},
+        lowhealthdamage: {from: 36, to: 41}
+    }
+})
+
 k.loadSprite("power-ups", "./sprites/Power-ups.png", {
     sliceX: 4,
     sliceY: 2,
@@ -89,3 +103,5 @@ k.loadSprite("tutorial-background", "./maps/tutorial-background.png", {
     sliceY: 1,
     anims: {play : {from: 0, to: 1, loop: true, speed: 1}}
 })
+k.loadSprite("level1-back", "./maps/level1-back.png")
+k.loadSprite("level1-front", "./maps/level1-front.png")
