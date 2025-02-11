@@ -23,7 +23,7 @@ k.loadSprite("player", "./sprites/Player.png", {
         jump: { from: 30, to: 35},
         doubleJump: { from: 40, to: 45},
         fall: { from: 33, to: 35},
-        wall: {from: 60, to: 62, loop:true},
+        wall: {from: 60, to: 62, loop:true, speed: 8},
         damage: { from: 45, to: 40, speed: 10},
         dead: {from: 70, to: 79, speed: 5}
     }
