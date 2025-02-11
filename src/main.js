@@ -10,10 +10,6 @@ import {level1} from "./scenes/level1.js";
 console.log(platform.name)
 browserChecker()
 
-// k.loadSprite("HT_Tileset", "./HT_Tileset.png", {
-//     sliceX: 14,
-//     sliceY: 3,
-// })
 k.setBackground(k.Color.fromHex("#000000"))
 
 async function main() {
@@ -48,13 +44,13 @@ k.scene("intro", () => {
         k.text("Press ENTER to start"),
         k.pos(100,100)
     ])
-    k.onKeyPress("enter", () => {
+    k.onKeyPress("1", () => {
         k.go("testRoom")
     })
-    k.onKeyPress("1", () => {
+    k.onKeyPress("2", () => {
         k.go("wallJump")
     })
-    k.onKeyPress("2", () => {
+    k.onKeyPress("enter", () => {
         k.go("tutorial")
     })
 })
