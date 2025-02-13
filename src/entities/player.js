@@ -210,19 +210,19 @@ export function makePlayer(k) {
             spikeHandler(healthbar){
               this.onCollide("Spikes", ()=>{
                   if (this.hp() > 0){
-                      this.vel.x = 0
+                      // this.vel.x = 0
                       this.vel.y = 0
                       this.runSpeed = 120
                       this.play("damage")
                       // this.jump()
                       if (k.isKeyDown("right")){
-                          this.applyImpulse(k.vec2(-250,-400))
+                          this.applyImpulse(k.vec2(-100,-400))
                       }
                       else if (k.isKeyDown("left")){
-                          this.applyImpulse(k.vec2(250, -400))
+                          this.applyImpulse(k.vec2(100, -400))
                       }
                       else {
-                          this.applyImpulse(k.vec2(0, -500))
+                          this.applyImpulse(k.vec2(0, -400))
                       }
                       switch (this.hp()){
                           case 3:
