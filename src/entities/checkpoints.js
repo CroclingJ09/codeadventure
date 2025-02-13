@@ -18,11 +18,9 @@ export function makeCheckpoints(k){
 
     if(state.current().RespawnPositionX === checkpoint.pos.x && state.current().RespawnPositionY === checkpoint.pos.y){
         checkpoint.play("activated")
-        console.log(true)
     }
     else{
         checkpoint.play("unactivated")
-        console.log(false)
     }
 
     checkpoint.onCollide("player", (player) => {
@@ -30,7 +28,6 @@ export function makeCheckpoints(k){
             checkpoint.play("activating")
             state.set(statePropsEnum.RespawnPositionX, checkpoint.pos.x)
             state.set(statePropsEnum.RespawnPositionY, checkpoint.pos.y)
-            console.log(state.current().RespawnPositionX, state.current().RespawnPositionY)
             checkpoint.onAnimEnd((anim) => {
                 if (anim === "activating"){
                     checkpoint.play("activated")

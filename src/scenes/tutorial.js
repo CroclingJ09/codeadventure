@@ -5,11 +5,12 @@ import {makeCheckpoints} from "../entities/checkpoints.js";
 import {inventory, resetInventory} from "../entities/inventory.js";
 import {makeDivZone} from "../entities/DivBlocks.js";
 import {makeInteractZone} from "../entities/interactZones.js";
-import {focusOnCanvas, pauseGame, setCameraBorders} from "../utils.js";
+import {createPowerUpPopup, focusOnCanvas, pauseGame, setCameraBorders} from "../utils.js";
 import {makeHealthBar} from "../entities/healthbar.js";
 import {makeLevelName} from "../entities/levelName.js";
 export function tutorial(k, roomData) {
     let addedColliders = []
+    //Background image
     k.add([
         k.sprite("tutorial-background", {anim: "play"}),
         k.scale(2.5),
@@ -21,12 +22,15 @@ export function tutorial(k, roomData) {
     k.setGravity(1000)
     k.paused = false
 
+    //json file info
     const roomLayers = roomData.layers
 
+    //Dividing into layers and pushed into differents arrays
     const map = k.add([k.pos(0,0), k.sprite("tutorial-back")])
     const colliders = []
     const positions = []
 
+    //Place every entities by searching them by name
     for (const layer of roomLayers){
         if (layer.name === "Positions"){
             positions.push(...layer.objects)
@@ -66,8 +70,11 @@ export function tutorial(k, roomData) {
             else{
                 player.setPosition(state.current().RespawnPositionX, state.current().RespawnPositionY)
             }
-            // player.enableDoubleJump()
-            // player.wallJumpHandler()
+            player.setControls()
+            player.setEvents("tutorial")
+            player.enablePassthrough()
+            player.respawnIfOutOfBounds(600, "tutorial")
+            player.dashHandler()
         }
 
         if (position.type === "Checkpoint"){
@@ -77,8 +84,6 @@ export function tutorial(k, roomData) {
 
         if (position.type === "DivBlock"){
             let inventoryCheck = inventory.includes(position.name)
-            console.log(position.name)
-            console.log(inventoryCheck)
             if (inventoryCheck === false){
                 const divBlock = map.add(makeDivZone(k,position.name))
                 divBlock.setPosition(position.x, position.y)
@@ -97,24 +102,20 @@ export function tutorial(k, roomData) {
 
     const levelName = map.add(makeLevelName(k, "Tutorial"))
 
-    player.setControls()
-    player.setEvents("tutorial")
-    player.enablePassthrough()
-    player.respawnIfOutOfBounds(600, "tutorial")
-    player.dashHandler()
+    //Added after the other player's functions because it needs the healthbar that is created at the end
     player.spikeHandler(healthbar)
 
     k.onUpdate(() => {
         if (k.isKeyPressed("escape")){
             pauseGame(k, player)
         }
-        else if (player.airDashUnlocked === true){
-            player.enableAirDash()
+        else if (k.isKeyPressed("x") && k.paused === true){
+            createPowerUpPopup(k, player)
         }
     })
 
+    //Plays when reaching the end of the level
     player.onCollide("NextZone", () => {
-        k.debug.log("next zone")
         resetInventory(inventory)
         state.set(statePropsEnum.playerHp, 3)
         state.set(statePropsEnum.RespawnPositionX, null)
@@ -122,5 +123,6 @@ export function tutorial(k, roomData) {
         k.go("level1")
     })
 
+    //Forces the focus on the canvas when a clock is done anywhere
     document.addEventListener("click", focusOnCanvas)
 }

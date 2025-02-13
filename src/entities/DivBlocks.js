@@ -18,9 +18,7 @@ export function makeDivZone(k, divBlockID) {
 
     divZone.onCollide("player", (player) => {
         k.destroy(divZone)
-        console.log("Div Block")
         if(divBlockID === "DivBlockTuto"){
-            k.debug.log(divBlockID)
             createPowerUpPopup(k, player, "DIV block", "This object can be used on <strong>Interaction Zones</strong> to crerate a block that can ba used as a platform. Press the jump button to continue")
         }
         updateInventory(inventory, "divBlock", divBlockID, k, player)

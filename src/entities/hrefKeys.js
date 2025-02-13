@@ -2,7 +2,7 @@ import {inventory, updateInventory} from "./inventory.js";
 
 export function makeHrefKey(k, hrefKeyID) {
     const hrefKey = k.make([
-        k.sprite("HT_Objects", {anim: "hrefKey1"}),
+        k.sprite("HT_Objects"),
         k.area({
             shape: new k.Rect(k.vec2(0,0), 32, 32)
         }),
@@ -12,13 +12,25 @@ export function makeHrefKey(k, hrefKeyID) {
                 this.pos.x = x
                 this.pos.y = y
             },
-        }
+        },
+        hrefKeyID
     ])
+
+    switch (hrefKeyID){
+        case "HrefKey1":
+            hrefKey.play("hrefKey1")
+            break;
+        case "HrefKey2":
+            hrefKey.play("hrefKey2")
+            break;
+        case "HrefKey3":
+            hrefKey.play("hrefKey3")
+            break;
+    }
 
     hrefKey.onCollide("player", (player) => {
         k.destroy(hrefKey)
-        console.log("Href Key 1add")
-        updateInventory(inventory, "hrefKey1", hrefKeyID, k, player)
+        updateInventory(inventory, hrefKeyID, hrefKeyID, k, player)
     })
 
     return hrefKey

@@ -1,3 +1,4 @@
+//Global states for the player
 export const statePropsEnum = {
     playerHp: "playerHp",
     DoubleJump: "DoubleJump",

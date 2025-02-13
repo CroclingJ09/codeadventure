@@ -1,25 +1,21 @@
 import {setMapColliders} from "./roomUtils.js";
 import {makePlayer} from "../entities/player.js";
-import {focusOnCanvas, pauseGame, setCameraBorders} from "../utils.js";
-import {state} from "../state/globalStateManager.js";
+import {createPowerUpPopup, focusOnCanvas, pauseGame, setCameraBorders} from "../utils.js";
+import {state, statePropsEnum} from "../state/globalStateManager.js";
 import {makeJumpPowerUp} from "../entities/jumpPowerUp.js";
-import {makeDashPowerUp} from "../entities/dashPowerUp.js";
 import {makeCheckpoints} from "../entities/checkpoints.js";
-import {inventory} from "../entities/inventory.js";
+import {inventory, resetInventory} from "../entities/inventory.js";
 import {makeDivZone} from "../entities/DivBlocks.js";
-import {makeHrefKey} from "../entities/hrefKeys.js";
-import {makeTeleporters} from "../entities/teleporters.js";
 import {makeInteractZone} from "../entities/interactZones.js";
 import {makeHealthBar} from "../entities/healthbar.js";
 import {makeLevelName} from "../entities/levelName.js";
 
 export function level1(k, roomData) {
     let addedColliders = []
+    //Background image
     k.add([
-        // k.rect(k.width(), k.height()),
         k.sprite("testBackground"),
         k.scale(2.5),
-        // k.color(k.Color.fromHex("#324df8")),
         k.fixed()
     ])
 
@@ -28,8 +24,10 @@ export function level1(k, roomData) {
     k.setGravity(1000)
     k.paused = false
 
+    //json file info
     const roomLayers = roomData.layers
 
+    //Dividing into layers and pushed into differents arrays
     const map = k.add([k.pos(0,0), k.sprite("level1-back")])
     const colliders = []
     const positions = []
@@ -54,6 +52,8 @@ export function level1(k, roomData) {
 
     setCameraBorders(290, 1630, 0, 1440, player, k)
 
+
+    //Place every entities by searching them by name
     for (const position of positions){
         if (position.name === "PlayerSpawn"){
             if (state.current().RespawnPositionX === null && state.current().RespawnPositionY === null){
@@ -83,21 +83,9 @@ export function level1(k, roomData) {
 
         if (position.type === "DivBlock"){
             let inventoryCheck = inventory.includes(position.name)
-            console.log(position.name)
-            console.log(inventoryCheck)
             if (inventoryCheck === false){
                 const divBlock = map.add(makeDivZone(k,position.name))
                 divBlock.setPosition(position.x, position.y)
-            }
-        }
-
-        if (position.type === "HrefKey"){
-            let inventoryCheck = inventory.includes(position.name)
-            console.log(position.name)
-            console.log(inventoryCheck)
-            if (inventoryCheck === false){
-                const hrefKey = map.add(makeHrefKey(k,position.name))
-                hrefKey.setPosition(position.x, position.y)
             }
         }
 
@@ -113,19 +101,27 @@ export function level1(k, roomData) {
 
     const levelName = map.add(makeLevelName(k, "HT MainLand ver.1.0"))
 
+    //Added after the other player's functions because it needs the healthbar that is created at the end
     player.spikeHandler(healthbar)
 
     k.onUpdate(() => {
         if (k.isKeyPressed("escape")){
             pauseGame(k, player)
         }
-            // else if (k.isKeyPressed("x") && k.paused === true){
-            //     createPowerUpPopup(k, player)
-        // }
-        else if (player.airDashUnlocked === true){
-            player.enableAirDash()
+        else if (k.isKeyPressed("x") && k.paused === true){
+            createPowerUpPopup(k, player)
         }
     })
 
+    //Plays when reaching the end of the level
+    player.onCollide("NextZone", () => {
+        resetInventory(inventory)
+        state.set(statePropsEnum.playerHp, 3)
+        state.set(statePropsEnum.RespawnPositionX, null)
+        state.set(statePropsEnum.RespawnPositionY, null)
+        k.go("level2")
+    })
+
+    //Forces the focus on the canvas when a clock is done anywhere
     document.addEventListener("click", focusOnCanvas)
 }

@@ -1,32 +1,12 @@
 import {k} from "./kaplayCtx"
-import {testRoom} from "./scenes/testRoom.js";
-import {wallJump} from "./scenes/wallJump.js";
-import platform from "platform"
 import {browserChecker} from "./browserChecker.js";
 import {tutorial} from "./scenes/tutorial.js";
 import {level1} from "./scenes/level1.js";
+import {level2} from "./scenes/level2.js";
 
-// export let addedColliders = []
-console.log(platform.name)
 browserChecker()
 
-// k.loadSprite("HT_Tileset", "./HT_Tileset.png", {
-//     sliceX: 14,
-//     sliceY: 3,
-// })
-k.setBackground(k.Color.fromHex("#000000"))
-
 async function main() {
-    const testRoomData = await (await fetch("./maps/test.json")).json()
-    k.scene("testRoom", () => {
-        testRoom(k,testRoomData)
-    })
-
-    const wallJumpData = await (await fetch("./maps/walljump.json")).json()
-    k.scene("wallJump", () => {
-        wallJump(k, wallJumpData)
-    })
-
     const tutorialData = await (await  fetch("./maps/tutorial.json")).json()
     k.scene("tutorial", () => {
         tutorial(k, tutorialData)
@@ -36,26 +16,33 @@ async function main() {
     k.scene("level1", () => {
         level1(k, level1Data)
     })
+
+    const level2Data = await ( await fetch("./maps/level2.json")).json()
+    k.scene("level2", () => {
+        level2(k, level2Data)
+    })
 }
 
 k.scene("intro", () => {
     k.add([
-        k.rect(k.width(), k.height()),
-        k.color(k.Color.fromHex("#2e4fca")),
+        k.sprite("testBackground"),
+        k.scale(2.5),
         k.fixed()
     ])
     k.add([
-        k.text("Press ENTER to start"),
-        k.pos(100,100)
+        k.text("Press ENTER to start", {
+            size: 50,
+            font: "Jersey15",
+        }),
+        k.color(k.Color.GREEN),
+        k.anchor("center"),
+        k.pos(720, 360)
     ])
     k.onKeyPress("enter", () => {
-        k.go("testRoom")
-    })
-    k.onKeyPress("1", () => {
-        k.go("wallJump")
+        k.go("tutorial")
     })
     k.onKeyPress("2", () => {
-        k.go("tutorial")
+        k.go("level2")
     })
 })
 

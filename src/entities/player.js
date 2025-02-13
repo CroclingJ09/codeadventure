@@ -169,19 +169,6 @@ export function makePlayer(k) {
                         this.dashTime = 0
                     }
                 })
-                // this.onStateUpdate("dash", () => {
-                //     if(this.dashTime >= 20){
-                //         this.enterState("normal")
-                //         this.isDashing=false
-                //         k.setGravity(1000)
-                //         this.jumpForce=400
-                //         this.dashTime = 0
-                //         return
-                //     }
-                //     else{
-                //         this.dashTime++
-                //     }
-                // })
             },
             wallJumpHandler(){
                 this.onCollide("Wall", () => {
@@ -317,7 +304,6 @@ export function makePlayer(k) {
                 this.on("hurt", () => {
                     if (this.hp() >= 0){
                         state.set(statePropsEnum.playerHp, state.current().playerHp - 1)
-                        console.log(this.hp())
                     }
                 })
             },

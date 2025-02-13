@@ -4,23 +4,14 @@ import {inventory, removeItem} from "../entities/inventory.js";
 import {addDivBlock} from "../scenes/roomUtils.js";
 
 export function addDragAndDrop(k, player, interactZone, map, addedCollisions){
-    // const dropObject = document.getElementById(id)
-    // console.log(dropObject)
     const dropObjectsHTML = document.getElementsByClassName("inventory-object")
-    console.log(dropObjectsHTML)
     let dropObjects = Array.from(dropObjectsHTML)
-    console.log(dropObjects)
     const dropZone = document.getElementById("drop-zone")
-    console.log(dropZone)
     let draggedObject = null
-    console.log(currInteractZone)
 
     dropObjects.forEach((dropObject) => {
         dropObject.addEventListener('dragstart', function(event) {
-            console.log(this)
             draggedObject = this
-            console.log(draggedObject)
-            console.log(draggedObject.className)
         })
 
         dropObject.addEventListener('drag', function (event){
@@ -29,39 +20,26 @@ export function addDragAndDrop(k, player, interactZone, map, addedCollisions){
     })
 
     dropZone.addEventListener('click', function() {
-        console.log(dropZone)
     })
 
     dropZone.addEventListener('dragover', function (event) {
         event.preventDefault()
-        console.log("au-dessus")
-        console.log(k.paused, player.paused)
     })
 
     dropZone.addEventListener('drop', function (event) {
-        console.log(currInteractZone)
         switch (currInteractZone){
             case "InteractZone1":
                 if (draggedObject.className.includes("div-block")){
                     k.destroy(interactZone)
                     removeItem(inventory, draggedObject.id)
-                    console.log("drop-moi ça")
-                    console.log(addedCollisions)
-                    console.log(event)
-                    // dropZone.append(dropObject)
                     dropZone.append(draggedObject)
                     addDivBlock(k, addedCollisions, "SpawnedBlock1")
                     dropZone.innerHTML= ""
-                    // let objectIndex = inventory.indexOf(dropObject)
-                    // console.log(objectIndex)
-                    console.log(k.paused, player.paused)
                     playAfterRightDrop(k, player)
-                    console.log("finish")
                     focusOnCanvas()
                     return
                 }
                 else{
-                    console.log("mauvaise réponse")
                     focusOnCanvas()
                     return;
                 }
@@ -72,7 +50,6 @@ export function addDragAndDrop(k, player, interactZone, map, addedCollisions){
                     removeItem(inventory, draggedObject.id)
                     dropZone.append(draggedObject)
                     const teleporter = map.get("Teleporter1-1")
-                    console.log(teleporter)
                     teleporter[0].play("activating1")
                     teleporter[0].onAnimEnd((anim) => {
                         if (anim === "activating1"){
@@ -85,7 +62,6 @@ export function addDragAndDrop(k, player, interactZone, map, addedCollisions){
                     return;
                 }
                 else{
-                    console.log("mauvaise réponse")
                     focusOnCanvas()
                     return;
                 }
@@ -94,23 +70,14 @@ export function addDragAndDrop(k, player, interactZone, map, addedCollisions){
                 if (draggedObject.className.includes("div-block")){
                     k.destroy(interactZone)
                     removeItem(inventory, draggedObject.id)
-                    console.log("drop-moi ça")
-                    console.log(addedCollisions)
-                    console.log(event)
-                    // dropZone.append(dropObject)
                     dropZone.append(draggedObject)
                     addDivBlock(k, addedCollisions, "SpawnedBlockTuto")
                     dropZone.innerHTML= ""
-                    // let objectIndex = inventory.indexOf(dropObject)
-                    // console.log(objectIndex)
-                    console.log(k.paused, player.paused)
                     playAfterRightDrop(k, player)
-                    console.log("finish")
                     focusOnCanvas()
                     return
                 }
                 else{
-                    console.log("mauvaise réponse")
                     focusOnCanvas()
                     return;
                 }
@@ -127,7 +94,6 @@ export function addDragAndDrop(k, player, interactZone, map, addedCollisions){
                     return
                 }
                 else{
-                    console.log("mauvaise réponse")
                     focusOnCanvas()
                     return;
                 }
@@ -144,7 +110,6 @@ export function addDragAndDrop(k, player, interactZone, map, addedCollisions){
                     return
                 }
                 else{
-                    console.log("mauvaise réponse")
                     focusOnCanvas()
                     return;
                 }
@@ -161,7 +126,6 @@ export function addDragAndDrop(k, player, interactZone, map, addedCollisions){
                     return
                 }
                 else{
-                    console.log("mauvaise réponse")
                     focusOnCanvas()
                     return;
                 }
@@ -178,7 +142,104 @@ export function addDragAndDrop(k, player, interactZone, map, addedCollisions){
                     return
                 }
                 else{
-                    console.log("mauvaise réponse")
+                    focusOnCanvas()
+                    return;
+                }
+                break;
+            case "InteractZone2-1":
+                if (draggedObject.className.includes("div-block")){
+                    k.destroy(interactZone)
+                    removeItem(inventory, draggedObject.id)
+                    dropZone.append(draggedObject)
+                    addDivBlock(k, addedCollisions, "SpawnedBlock2-1")
+                    dropZone.innerHTML= ""
+                    playAfterRightDrop(k, player)
+                    focusOnCanvas()
+                    return
+                }
+                else{
+                    focusOnCanvas()
+                    return;
+                }
+                break;
+            case "InteractZone2-2":
+                if (draggedObject.className.includes("href-key-1")){
+                    k.destroy(interactZone)
+                    removeItem(inventory, draggedObject.id)
+                    dropZone.append(draggedObject)
+                    const teleporter = map.get("Teleporter1-1")
+                    teleporter[0].play("activating1")
+                    teleporter[0].onAnimEnd((anim) => {
+                        if (anim === "activating1"){
+                            teleporter[0].play("activated1")
+                        }
+                    })
+                    dropZone.innerHTML= ""
+                    playAfterRightDrop(k, player)
+                    focusOnCanvas()
+                    return;
+                }
+                else{
+                    focusOnCanvas()
+                    return;
+                }
+                break;
+            case "InteractZone2-3":
+                if (draggedObject.className.includes("href-key-2")){
+                    k.destroy(interactZone)
+                    removeItem(inventory, draggedObject.id)
+                    dropZone.append(draggedObject)
+                    const teleporter = map.get("Teleporter2-1")
+                    teleporter[0].play("activating2")
+                    teleporter[0].onAnimEnd((anim) => {
+                        if (anim === "activating2"){
+                            teleporter[0].play("activated2")
+                        }
+                    })
+                    dropZone.innerHTML= ""
+                    playAfterRightDrop(k, player)
+                    focusOnCanvas()
+                    return;
+                }
+                else{
+                    focusOnCanvas()
+                    return;
+                }
+                break;
+            case "InteractZone2-4":
+                if (draggedObject.className.includes("div-block")){
+                    k.destroy(interactZone)
+                    removeItem(inventory, draggedObject.id)
+                    dropZone.append(draggedObject)
+                    addDivBlock(k, addedCollisions, "SpawnedBlock2-4")
+                    dropZone.innerHTML= ""
+                    playAfterRightDrop(k, player)
+                    focusOnCanvas()
+                    return
+                }
+                else{
+                    focusOnCanvas()
+                    return;
+                }
+                break;
+            case "InteractZone2-5":
+                if (draggedObject.className.includes("href-key-3")){
+                    k.destroy(interactZone)
+                    removeItem(inventory, draggedObject.id)
+                    dropZone.append(draggedObject)
+                    const teleporter = map.get("Teleporter3-1")
+                    teleporter[0].play("activating3")
+                    teleporter[0].onAnimEnd((anim) => {
+                        if (anim === "activating3"){
+                            teleporter[0].play("activated3")
+                        }
+                    })
+                    dropZone.innerHTML= ""
+                    playAfterRightDrop(k, player)
+                    focusOnCanvas()
+                    return;
+                }
+                else{
                     focusOnCanvas()
                     return;
                 }

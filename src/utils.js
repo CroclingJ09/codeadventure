@@ -29,16 +29,13 @@ export function pauseGame(k,player){
     let pausescreen = document.getElementById("pause")
     let powerUpPopup = document.getElementById("unlock-window")
     let interactPopup = document.getElementById("interact-block")
-    console.log(pausescreen)
     if (k.paused === false){
-        console.log("pause")
         k.paused= true
         player.paused = true
         pausescreen.classList.add("paused")
         pausescreen.classList.remove("unpaused")
     }
     else if (k.paused === true){
-        console.log("play")
         k.paused= false
         player.paused = false
         pausescreen.classList.remove("paused")
@@ -74,7 +71,6 @@ export function createPowerUpPopup(k, player, title, text){
 export function createInteractPopup(k, player, name){
     let interactPopup = document.getElementById("interact-block")
     let interactText = document.getElementById("interact-text")
-    console.log(interactPopup)
     interactPopup.classList.add("paused")
     interactPopup.classList.remove("unpaused")
     if (name === "InteractZoneTuto"){
@@ -92,17 +88,8 @@ export function focusOnCanvas(){
 export function playAfterRightDrop(k, player){
     let interactPopup = document.getElementById("interact-block")
 
-    // if(k.paused === true){
-    //     k.paused = false
-    //     player.paused = false
-    //     interactPopup.classList.add("unpaused")
-    //     interactPopup.classList.remove("paused")
-    //     console.log(k.paused, player.paused)
-    // }
-
     k.paused = false
     player.paused = false
     interactPopup.classList.add("unpaused")
     interactPopup.classList.remove("paused")
-    console.log(k.paused, player.paused)
 }

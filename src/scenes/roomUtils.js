@@ -37,7 +37,6 @@ export function setMapColliders(k, map, colliders) {
 }
 
 export function addDivBlock(k, addedColliders, addedcolliderName){
-    console.log("yeah")
     for (const addedCollider of addedColliders){
         if (addedCollider.name === addedcolliderName){
             k.add([
