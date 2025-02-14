@@ -351,7 +351,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -479,6 +479,24 @@
                  "width":0,
                  "x":1920,
                  "y":352
+                }, 
+                {
+                 "height":0,
+                 "id":49,
+                 "name":"",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"Text",
+                         "type":"string",
+                         "value":"C to interact"
+                        }],
+                 "rotation":0,
+                 "type":"Text",
+                 "visible":true,
+                 "width":0,
+                 "x":1632,
+                 "y":128
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -509,7 +527,7 @@
          "y":0
         }],
  "nextlayerid":8,
- "nextobjectid":49,
+ "nextobjectid":50,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.0",
