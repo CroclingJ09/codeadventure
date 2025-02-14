@@ -4,7 +4,7 @@ Game made with Kaplay.js with programming theme.
 
 # Installation
 
-Open the project with a text editor (Visual Coee Studio is a great free option).
+Open the project with a text editor (Visual Code Studio is a great free option).
 
 Enter the "npm install" on a command window at the root of the project.
 
