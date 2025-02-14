@@ -6,6 +6,7 @@ import {level2} from "./scenes/level2.js";
 
 browserChecker()
 
+//Async function to fetch all json files from each level and call each one's creation function
 async function main() {
     const tutorialData = await (await  fetch("./maps/tutorial.json")).json()
     k.scene("tutorial", () => {
@@ -23,6 +24,7 @@ async function main() {
     })
 }
 
+//Define the title scene
 k.scene("intro", () => {
     k.add([
         k.sprite("testBackground"),

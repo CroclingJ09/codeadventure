@@ -188,12 +188,13 @@ export function level2(k, roomData) {
         }
     })
 
-    //Plays when reaching the end of the level
+    //Plays when reaching the end of the level, return to the title screen
     player.onCollide("NextZone", () => {
         resetInventory(inventory)
         state.set(statePropsEnum.playerHp, 3)
         state.set(statePropsEnum.RespawnPositionX, null)
         state.set(statePropsEnum.RespawnPositionY, null)
+        //Reset the upgrades
         state.set(statePropsEnum.DoubleJump, false)
         state.set(statePropsEnum.AirDash, false)
         k.go("intro")

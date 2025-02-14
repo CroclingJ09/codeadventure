@@ -1,5 +1,5 @@
 import {inventory, updateInventory} from "./inventory.js";
-import {createInteractPopup, createPowerUpPopup} from "../utils.js";
+import {createPowerUpPopup} from "../utils.js";
 
 export function makeDivZone(k, divBlockID) {
     const divZone = k.make([

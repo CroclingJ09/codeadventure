@@ -26,6 +26,7 @@ export function makeCheckpoints(k){
     checkpoint.onCollide("player", (player) => {
         if (checkpoint.curAnim() === "unactivated"){
             checkpoint.play("activating")
+            //Define new spawning point
             state.set(statePropsEnum.RespawnPositionX, checkpoint.pos.x)
             state.set(statePropsEnum.RespawnPositionY, checkpoint.pos.y)
             checkpoint.onAnimEnd((anim) => {

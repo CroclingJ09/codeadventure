@@ -16,6 +16,7 @@ export function makeHrefKey(k, hrefKeyID) {
         hrefKeyID
     ])
 
+    //Define the animation used based on the key number
     switch (hrefKeyID){
         case "HrefKey1":
             hrefKey.play("hrefKey1")

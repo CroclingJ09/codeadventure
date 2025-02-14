@@ -3,6 +3,7 @@ import {currInteractZone} from "../entities/interactZones.js";
 import {inventory, removeItem} from "../entities/inventory.js";
 import {addDivBlock} from "../scenes/roomUtils.js";
 
+//Function to create the drag and drop on each objet from the inventory
 export function addDragAndDrop(k, player, interactZone, map, addedCollisions){
     const dropObjectsHTML = document.getElementsByClassName("inventory-object")
     let dropObjects = Array.from(dropObjectsHTML)
@@ -27,53 +28,23 @@ export function addDragAndDrop(k, player, interactZone, map, addedCollisions){
     })
 
     dropZone.addEventListener('drop', function (event) {
+        //Checks which interaction zone is used and uses the correct method
         switch (currInteractZone){
-            case "InteractZone1":
-                if (draggedObject.className.includes("div-block")){
-                    k.destroy(interactZone)
-                    removeItem(inventory, draggedObject.id)
-                    dropZone.append(draggedObject)
-                    addDivBlock(k, addedCollisions, "SpawnedBlock1")
-                    dropZone.innerHTML= ""
-                    playAfterRightDrop(k, player)
-                    focusOnCanvas()
-                    return
-                }
-                else{
-                    focusOnCanvas()
-                    return;
-                }
-                break;
-            case "InteractZone2":
-                if (draggedObject.className.includes("href-key-1")){
-                    k.destroy(interactZone)
-                    removeItem(inventory, draggedObject.id)
-                    dropZone.append(draggedObject)
-                    const teleporter = map.get("Teleporter1-1")
-                    teleporter[0].play("activating1")
-                    teleporter[0].onAnimEnd((anim) => {
-                        if (anim === "activating1"){
-                            teleporter[0].play("activated1")
-                        }
-                    })
-                    dropZone.innerHTML= ""
-                    playAfterRightDrop(k, player)
-                    focusOnCanvas()
-                    return;
-                }
-                else{
-                    focusOnCanvas()
-                    return;
-                }
-                break;
             case "InteractZoneTuto":
+                //Checks if it's the right object with classes
                 if (draggedObject.className.includes("div-block")){
                     k.destroy(interactZone)
+                    //Removes the item from the inventory array
                     removeItem(inventory, draggedObject.id)
+                    //Moves the object frommthe inventory into the drop zone
                     dropZone.append(draggedObject)
+                    //Creates the block on the map
                     addDivBlock(k, addedCollisions, "SpawnedBlockTuto")
+                    //empties the drop zone
                     dropZone.innerHTML= ""
+                    //Closes the window and unpause the game and the player
                     playAfterRightDrop(k, player)
+                    //Put the focus on the canvas
                     focusOnCanvas()
                     return
                 }

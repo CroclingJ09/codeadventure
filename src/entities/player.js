@@ -39,9 +39,11 @@ export function makePlayer(k) {
                     }
                 })
             },
+            //Functions to set every controls
             setControls() {
                 this.controlHandler = []
 
+                //Controls for when a key is pushed
                 this.controlHandler.push(
                     k.onKeyPress((key) => {
                         if (this.hp() !== 0){
@@ -69,6 +71,7 @@ export function makePlayer(k) {
                     })
                 )
 
+                //Contro,s for when a key is hold down
                 this.controlHandler.push(
                     k.onKeyDown((key) => {
                         if (this.hp() !== 0 && this.curAnim() !== "damage"){
@@ -129,6 +132,7 @@ export function makePlayer(k) {
                     })
                 )
 
+                //Controls for when a key is released
                 this.controlHandler.push(
                     k.onKeyRelease(() => {
                         if (this.hp() !== 0){
@@ -147,6 +151,7 @@ export function makePlayer(k) {
                     })
                 )
             },
+            //Function that handles the air dash mechanics
             dashHandler(){
                 this.onStateEnter("dash", () => {
                     k.setGravity(200)
@@ -170,6 +175,7 @@ export function makePlayer(k) {
                     }
                 })
             },
+            //Function that handles the wall jump mechanics
             wallJumpHandler(){
                 this.onCollide("Wall", () => {
                     k.setGravity(200)
@@ -207,6 +213,7 @@ export function makePlayer(k) {
 
                 })
             },
+            //Function that handles interaction with spikes
             spikeHandler(healthbar){
               this.onCollide("Spikes", ()=>{
                   if (this.hp() > 0){
@@ -257,6 +264,7 @@ export function makePlayer(k) {
                   }
               })
             },
+            //Function that respawn the player if he falls off the map
             respawnIfOutOfBounds(
                 boundValue,
                 actRoom
@@ -268,6 +276,7 @@ export function makePlayer(k) {
                     }
                 })
             },
+            //Set various events for general states (falling, landing)
             setEvents(roomName) {
                 this.onFall(() => {
                     this.play("fall")
@@ -307,9 +316,11 @@ export function makePlayer(k) {
                     }
                 })
             },
+            //Function to unlock the double jump without reloading the page
             enableDoubleJump() {
                 this.numJumps = 2
             },
+            //Function to unlock the air dash without reloading the page
             enableAirDash() {
                 this.airDashUnlocked = true
             }

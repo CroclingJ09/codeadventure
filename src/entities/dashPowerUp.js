@@ -19,7 +19,7 @@ export function makeDashPowerUp(k, pos) {
     dashPowerUp.onCollide("player", (player) => {
         k.destroy(dashPowerUp)
         state.set(statePropsEnum.AirDash, true)
-        createPowerUpPopup(k,player,"You've unlocked the air dash", "Press the action button while in the air to gain some horizontal distance<br> Press the jump button to continue")
+        createPowerUpPopup(k,player,"You've unlocked the air dash", "Press C while in the air to gain some horizontal distance<br> Press the jump button to continue")
         player.enableAirDash()
     })
 
