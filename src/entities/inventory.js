@@ -10,19 +10,19 @@ export function updateInventory(inventory, object, objectID, k, player){
     let objectType = ""
     switch (object){
         case "divBlock":
-            imgLink = "public/sprites/objects/divBloc.png"
+            imgLink = "sprites/objects/divBloc.png"
             objectType = "div-block"
             break;
         case "HrefKey1":
-            imgLink = "public/sprites/objects/hrefKey1.png"
+            imgLink = "sprites/objects/hrefKey1.png"
             objectType = "href-key-1"
             break;
         case "HrefKey2":
-            imgLink = "public/sprites/objects/hrefKey2.png"
+            imgLink = "sprites/objects/hrefKey2.png"
             objectType = "href-key-2"
             break;
         case "HrefKey3":
-            imgLink = "public/sprites/objects/hrefKey3.png"
+            imgLink = "sprites/objects/hrefKey3.png"
             objectType = "href-key-3"
             break;
     }
