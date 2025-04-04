@@ -381,7 +381,7 @@
                         {
                          "name":"Text",
                          "type":"string",
-                         "value":"Arrow keys to move"
+                         "value":"Arrow keys / AD to move"
                         }],
                  "rotation":0,
                  "type":"Text",
@@ -399,13 +399,13 @@
                         {
                          "name":"Text",
                          "type":"string",
-                         "value":"X to jump"
+                         "value":"Spacebar / Up to jump"
                         }],
                  "rotation":0,
                  "type":"Text",
                  "visible":true,
                  "width":0,
-                 "x":672,
+                 "x":600,
                  "y":256
                 }, 
                 {
@@ -417,7 +417,7 @@
                         {
                          "name":"Text",
                          "type":"string",
-                         "value":"Hold Y to run"
+                         "value":"Hold Shift to run"
                         }],
                  "rotation":0,
                  "type":"Text",
@@ -489,7 +489,7 @@
                         {
                          "name":"Text",
                          "type":"string",
-                         "value":"C to interact"
+                         "value":"F to interact"
                         }],
                  "rotation":0,
                  "type":"Text",
