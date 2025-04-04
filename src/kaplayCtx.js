@@ -7,7 +7,7 @@ export const k = kaboom({
     scale,
     maxFPS: 120,
     global: false,
-    debugKey: "d",
+    debugKey: "s",
 /*    touchToMouse: true,*/
     letterbox: true,
     canvas: document.getElementById("game")

@@ -108,7 +108,7 @@ export function level1(k, roomData) {
         if (k.isKeyPressed("escape")){
             pauseGame(k, player)
         }
-        else if (k.isKeyPressed("x") && k.paused === true){
+        else if (k.isKeyPressed("space") && k.paused === true){
             createPowerUpPopup(k, player)
         }
     })

@@ -47,21 +47,24 @@ export function makePlayer(k) {
                 this.controlHandler.push(
                     k.onKeyPress((key) => {
                         if (this.hp() !== 0){
-                            if (key === "x" && this.paused===false && this.curAnim() !== "damage" && this.state !== "onWall" ){
-                                //évite de redémarrer l'animation de saut si cette dernière est en cours
-                                this.onDoubleJump(() => {
-                                    this.play("doubleJump")
-                                })
-                                if (this.curAnim() !== "jump" && this.curAnim() !== "doubleJump") this.play("jump")
-                                this.doubleJump()
+                            if (key === "space" || key === "up" || key === "w"){
+                                if (this.paused===false && this.curAnim() !== "damage" && this.state !== "onWall" ){
+                                    //évite de redémarrer l'animation de saut si cette dernière est en cours
+                                    this.onDoubleJump(() => {
+                                        this.play("doubleJump")
+                                    })
+                                    if (this.curAnim() !== "jump" && this.curAnim() !== "doubleJump") this.play("jump")
+                                    this.doubleJump()
+                                }
                             }
+
 
                             //Test/debug
-                            if (key === "a"){
+                            if (key === "q"){
 
                             }
 
-                            if (key === "c" && !this.isGrounded() && this.dashLefts === 1 && this.airDashUnlocked === true && this.paused===false){
+                            if (key === "f" && !this.isGrounded() && this.dashLefts === 1 && this.airDashUnlocked === true && this.paused===false){
                                 this.isDashing = true
                                 this.enterState("dash")
                                 this.play("doubleJump")
@@ -75,58 +78,61 @@ export function makePlayer(k) {
                 this.controlHandler.push(
                     k.onKeyDown((key) => {
                         if (this.hp() !== 0 && this.curAnim() !== "damage"){
-                            if (key === "left" && !this.isAttacking && this.paused===false){
-                                if(this.isGrounded() && k.isKeyDown("y")){
-                                    if (this.curAnim() !== "walk" && this.runSpeed <=180){
+                            if (key === "left" || key === "a"){
+                                if (!this.isAttacking && this.paused===false){
+                                    if(this.isGrounded() && k.isKeyDown("shift")){
+                                        if (this.curAnim() !== "walk" && this.runSpeed <=180){
+                                            this.play("walk")
+                                        }
+                                        else if (this.curAnim() !== "run" && this.runSpeed > 180){
+                                            this.play("run")
+                                        }
+                                    }
+                                    else if (this.curAnim() !== "walk" && this.isGrounded() && !k.isKeyDown("shift")){
                                         this.play("walk")
                                     }
-                                    else if (this.curAnim() !== "run" && this.runSpeed > 180){
-                                        this.play("run")
+                                    if (this.isGrounded()){
+                                        this.flipX = true
                                     }
-                                }
-                                else if (this.curAnim() !== "walk" && this.isGrounded() && !k.isKeyDown("y")){
-                                    this.play("walk")
-                                }
-                                if (this.isGrounded()){
-                                    this.flipX = true
-                                }
-                                if (k.isKeyDown("y")){
-                                    this.move(-this.runSpeed,0)
-                                    if (this.runSpeed <250 && this.isGrounded()){
-                                        this.runSpeed += 2
+                                    if (k.isKeyDown("shift")){
+                                        this.move(-this.runSpeed,0)
+                                        if (this.runSpeed <250 && this.isGrounded()){
+                                            this.runSpeed += 2
+                                        }
                                     }
+                                    else{
+                                        this.move(-this.walkSpeed, 0)
+                                    }
+                                    return
                                 }
-                                else{
-                                    this.move(-this.walkSpeed, 0)
-                                }
-                                return
                             }
-
-                            if (key === "right" && !this.isAttacking && this.paused===false){
-                                if(this.isGrounded() && k.isKeyDown("y")){
-                                    if (this.curAnim() !== "walk" && this.runSpeed <=180){
+                            else if (key === "right" || key === "d"){
+                                if (!this.isAttacking && this.paused===false){
+                                    if(this.isGrounded() && k.isKeyDown("shift")){
+                                        if (this.curAnim() !== "walk" && this.runSpeed <=180){
+                                            this.play("walk")
+                                        }
+                                        else if (this.curAnim() !== "run" && this.runSpeed > 180){
+                                            this.play("run")
+                                        }
+                                    }
+                                    else if (this.curAnim() !== "walk" && this.isGrounded() && !k.isKeyDown("shift")){
                                         this.play("walk")
                                     }
-                                    else if (this.curAnim() !== "run" && this.runSpeed > 180){
-                                        this.play("run")
+                                    if (this.isGrounded()){
+                                        this.flipX = false
                                     }
-                                }
-                                else if (this.curAnim() !== "walk" && this.isGrounded() && !k.isKeyDown("y")){
-                                    this.play("walk")
-                                }
-                                if (this.isGrounded()){
-                                    this.flipX = false
-                                }
-                                if (k.isKeyDown("y") && this.curAnim() !== "damage"){
-                                    this.move(this.runSpeed,0)
-                                    if (this.runSpeed <250 && this.isGrounded()){
-                                        this.runSpeed += 2
+                                    if (k.isKeyDown("shift") && this.curAnim() !== "damage"){
+                                        this.move(this.runSpeed,0)
+                                        if (this.runSpeed <250 && this.isGrounded()){
+                                            this.runSpeed += 2
+                                        }
                                     }
+                                    else{
+                                        this.move(this.walkSpeed, 0)
+                                    }
+                                    return
                                 }
-                                else{
-                                    this.move(this.walkSpeed, 0)
-                                }
-                                return
                             }
                         }
                     })
@@ -145,7 +151,7 @@ export function makePlayer(k) {
                         }
                     }),
                     k.onKeyRelease((key) => {
-                        if (key === "y" || key === "right" || key === "left"){
+                        if (key === "control" || key === "right" || key === "left" || key === "a" || key === "d"){
                             this.runSpeed = 120
                         }
                     })
@@ -190,18 +196,20 @@ export function makePlayer(k) {
                     this.enterState("normal")
                 })
                 this.onStateUpdate("onWall", () => {
-                        this.onKeyPress("x", () => {
-                            if (this.state === "onWall"){
-                                if (this.flipX === false && this.curAnim() === "wall"){
-                                    this.applyImpulse(k.vec2(-500, -500))
-                                    this.flipX = true
-                                    // k.setGravity(1000)
+                        this.onKeyPress((key) => {
+                            if (key === "space" || key === "up" || key === "w"){
+                                if (this.state === "onWall"){
+                                    if (this.flipX === false && this.curAnim() === "wall"){
+                                        this.applyImpulse(k.vec2(-500, -500))
+                                        this.flipX = true
+                                        // k.setGravity(1000)
+                                    }
+                                    else if (this.flipX === true && this.curAnim() === "wall"){
+                                        this.applyImpulse(k.vec2(500, -500))
+                                        this.flipX = false
+                                    }
+                                    this.enterState("normal")
                                 }
-                                else if (this.flipX === true && this.curAnim() === "wall"){
-                                    this.applyImpulse(k.vec2(500, -500))
-                                    this.flipX = false
-                                }
-                                this.enterState("normal")
                             }
                         })
                 })

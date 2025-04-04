@@ -20,7 +20,7 @@ export function makeInteractZone(k, name, map, addedCollisions) {
 
     interactZone.onCollideUpdate("player", (player) => {
         // interactHandler(k, player)
-        if (k.isKeyPressed("c") && player.isGrounded()) {
+        if (k.isKeyPressed("f") && player.isGrounded()) {
             if (player.paused === false){
                 currInteractZone = name
                 k.paused = true
