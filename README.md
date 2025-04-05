@@ -12,17 +12,17 @@ To open the project on a browser, enter the "npm run dev" command. It will creat
 
 # Controls
 
-Walk : arrow keys
+Walk : arrow keys / AD
 
-Run : hold Y while walking
+Run : hold Shift while walking
 
-Jump : X
+Jump : Spacebar / Up
 
-Double Jump : X while in midair
+Double Jump : Spacebar / Up while in midair
 
-Air Dash : C while in midair
+Air Dash : F while in midair
 
-Open interaction window : C while grounded
+Open interaction window : F while grounded
 
 Close interaction window : ESC
 
@@ -30,6 +30,6 @@ Pause : ESC
 
 Using an item : use the mouse to drag and the drop the object from the inventory and drop it on the dedicated zone on the interaction window
 
-Debug : D
+Debug : S
 
 
