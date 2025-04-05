@@ -1,5 +1,4 @@
 import {state, statePropsEnum} from "../state/globalStateManager";
-import {inventory, createInventory, updateInventory} from "./inventory.js";
 
 export function makePlayer(k) {
     return k.make([
